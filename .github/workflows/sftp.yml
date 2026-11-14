@@ -1,0 +1,41 @@
+name: Deploy website via SFTP
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sftp-deployment
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install SFTP client
+        run: sudo apt-get update && sudo apt-get install --yes lftp
+
+      - name: Upload website via SFTP
+        env:
+          SFTP_URL: ${{ secrets.SFTP_URL }}
+          SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
+          LFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+        run: |
+          test -n "$SFTP_URL" || { echo "Missing SFTP_URL secret"; exit 1; }
+          test -n "$SFTP_USERNAME" || { echo "Missing SFTP_USERNAME secret"; exit 1; }
+          test -n "$LFTP_PASSWORD" || { echo "Missing SFTP_PASSWORD secret"; exit 1; }
+          lftp --env-password --user "$SFTP_USERNAME" "$SFTP_URL" <<'LFTP'
+          set cmd:fail-exit yes
+          set net:max-retries 2
+          set net:timeout 30
+          set sftp:connect-program "ssh -a -x -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+          mirror --reverse --verbose website/ .
+          bye
+          LFTP
