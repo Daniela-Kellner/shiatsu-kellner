@@ -31,11 +31,15 @@ jobs:
           test -n "$SFTP_URL" || { echo "Missing SFTP_URL secret"; exit 1; }
           test -n "$SFTP_USERNAME" || { echo "Missing SFTP_USERNAME secret"; exit 1; }
           test -n "$LFTP_PASSWORD" || { echo "Missing SFTP_PASSWORD secret"; exit 1; }
-          lftp --env-password --user "$SFTP_USERNAME" "$SFTP_URL" <<'LFTP'
+          # A URL with a path connects immediately, before stdin commands run.
+          # Load connection settings from lftp's startup file first.
+          cat > ~/.lftprc <<'CONFIG'
           set cmd:fail-exit yes
           set net:max-retries 2
           set net:timeout 30
           set sftp:connect-program "ssh -a -x -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+          CONFIG
+          lftp --env-password --user "$SFTP_USERNAME" "$SFTP_URL" <<'LFTP'
           mirror --reverse --verbose website/ .
           bye
           LFTP
