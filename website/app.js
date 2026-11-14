@@ -107,8 +107,14 @@ const offerDetails = {
     prices:[['Erstbehandlung · 90 Minuten',119],['Shiatsu-Sitzung · 60 Minuten',89],['Shiatsu-Sitzung · 90 Minuten',119]]
   },
   mental: {
-    title:'Mentaltraining, Coaching & Bewusstseinsarbeit', eyebrow:'RAUM FÜR DEINE PERSPEKTIVE', image:'mentaltraining-perspektiven.webp', alt:'Ein lächelnder Mann mit dem Post-it „Monkey“ auf der Stirn im Gespräch mit zwei Frauen',
-    paragraphs:['Manchmal hilft es, sich selbst mit etwas Abstand zu begegnen. Im persönlichen Gespräch nehmen wir deine Gedanken, Wünsche und inneren Bilder in den Blick.', 'Als diplomierte Mentaltrainerin und Energy Coach begleite ich dich dabei, deine eigenen nächsten Schritte zu finden. Inhalt und Tempo stimmen wir miteinander ab.'],
+    title:'Mentaltraining, Coaching & Bewusstseinsarbeit', eyebrow:'MEINE HERZENSARBEIT', image:'mentaltraining-perspektiven.webp', alt:'Ein lächelnder Mann mit dem Post-it „Monkey“ auf der Stirn im Gespräch mit zwei Frauen',
+    paragraphs:[
+      'Jeder Mensch trägt bereits alles in sich, was er für seinen eigenen Weg braucht. Manchmal sind es jedoch Erfahrungen, Gedankenmuster oder innere Blockaden, die den Blick darauf verstellen. Ich sehe mich als Raumöffnerin und Knotenlöserin.',
+      'Mit Achtsamkeit, Intuition und verschiedenen ganzheitlichen Methoden begleite ich dich dabei, wieder in Verbindung mit deiner inneren Weisheit, deinen Ressourcen und deinem authentischen So-Sein zu kommen.',
+      'Als diplomierte Mentaltrainerin und Energy Coach arbeite ich je nach Anliegen auf unterschiedlichen Ebenen: mit Mentaltraining und Coaching sowie transformativer Bewusstseinsarbeit und Quantenarbeit. Auch Kinder und Jugendliche finden bei mir eine liebevolle Begleitung.',
+      'Jede Begegnung ist individuell und entsteht aus dem, was sich im jeweiligen Moment zeigen möchte. Inhalt und Tempo stimmen wir miteinander ab.',
+      'Die Veränderung entsteht aus dir selbst. Ich halte den Raum, damit Klarheit, neue Perspektiven und Entwicklung möglich werden.'
+    ],
     list:['Einzelbegleitung nach persönlicher Vereinbarung','Auch als längerfristiger gemeinsamer Prozess','Wähle einen Termin mit 60 oder 90 Minuten.'],
     prices:[['60 Minuten',89],['90 Minuten',119]]
   },
