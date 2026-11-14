@@ -1,0 +1,23 @@
+# Daniela Kellner / FLUSSwärts – statischer Export für world4you
+# SSL zuerst im Kundenbereich aktivieren, danach dort HTTPS erzwingen.
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType video/mp4 .mp4
+  AddType audio/mpeg .mp3
+  AddType font/ttf .ttf
+</IfModule>
+
+# Aktualisierte Texte, Skripte und Styles beim nächsten Aufruf neu prüfen.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|css|js)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+# Bekannte frühere URL auf die übernommenen Erfahrungsberichte führen.
+<IfModule mod_alias.c>
+  RedirectMatch 301 ^/testimonials/?$ https://shiatsu-kellner.at/#stimmen
+</IfModule>
