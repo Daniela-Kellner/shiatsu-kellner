@@ -145,6 +145,31 @@ const offerDetails = {
     list:['Individuelle Abstimmung vor der Anwendung','Zeit für dein Anliegen, die Anwendung und das Nachspüren'],
     prices:[['90 Minuten',119]]
   },
+  kindermental: {
+    title:'Kinder & Jugendliche', eyebrow:'MENTALTRAINING & GANZHEITLICHE BEGLEITUNG', image:'kinder-teddy-20261029.webp', alt:'Ein heller Stoffteddybär neben zwei grünen Keimlingen in warmem Licht',
+    subtitle:'Mit Vertrauen wachsen. Sich selbst treu bleiben.',
+    paragraphs:[
+      'Kinder begegnen der Welt oft mit einer besonderen Offenheit, Ehrlichkeit und Feinfühligkeit. Diese Qualitäten zu bewahren und sie darin zu stärken, ihrer Wahrnehmung zu vertrauen und ihren eigenen Wert zu spüren, liegt mir besonders am Herzen.',
+      'Manchmal brauchen junge Menschen einen geschützten Raum, in dem sie Gefühle ausdrücken, über Erlebtes sprechen oder einfach ganz sie selbst sein dürfen. Einen Raum, in dem sie nichts leisten müssen und mit allem willkommen sind, was sie gerade beschäftigt.'
+    ],
+    sections:[
+      {title:'Wahrnehmen, was gerade wichtig ist', paragraphs:[
+        'Jedes Kind ist einzigartig. Deshalb gibt es bei mir keinen starren Ablauf. Mit Einfühlungsvermögen, Achtsamkeit und spielerischen, altersgerechten Methoden finde ich gemeinsam mit deinem Kind heraus, was gerade Aufmerksamkeit braucht.',
+        'Dabei verbinde ich Mentaltraining, Gespräche, Körperwahrnehmung und meine weiteren ganzheitlichen Zugänge. Was davon passend ist, richtet sich nach dem Alter, den Bedürfnissen und der Bereitschaft deines Kindes. Seine Grenzen und sein Tempo bleiben dabei maßgeblich.',
+        'Eine meiner Stärken ist es, aufmerksam hinzuhören und feine Signale wahrzunehmen – auch dann, wenn Worte noch fehlen. Im Mittelpunkt stehen die Ressourcen deines Kindes: seine Stärken, seine Intuition und das Vertrauen, selbst etwas bewirken zu können.'
+      ]},
+      {title:'Das Umfeld gehört dazu', paragraphs:[
+        'Ein Kind wächst in Beziehungen auf. Deshalb beziehe ich mit einem systemischen Blick auch sein familiäres und soziales Umfeld ein: Welche Situationen beschäftigen es? Welche Erwartungen wirken auf es ein? Was gibt ihm Sicherheit und Halt?',
+        'Gerade bei emotionalen Belastungen kann die begleitende Arbeit mit euch als Eltern ein wichtiger Teil sein. Gemeinsam schauen wir darauf, was euer Kind braucht und wie ihr es im Alltag unterstützen könnt. Dabei geht es um Verständnis, Entlastung und neue Möglichkeiten im Miteinander.'
+      ]},
+      {title:'Gemeinsam einen passenden Weg finden', paragraphs:[
+        'Zu Beginn besprechen wir euer Anliegen und klären, wie eine stimmige Begleitung aussehen kann – für dein Kind und für euch als Familie. Auch Jugendliche finden bei mir Raum für ihre eigenen Fragen, Gefühle und Perspektiven.'
+      ], quote:'Mein Anliegen ist, junge Menschen darin zu bestärken, sich selbst wahrzunehmen, ihren eigenen Wert zu kennen und mit Vertrauen ihren Weg zu gehen.'}
+    ],
+    list:[], prices:[],
+    inquirySubject:'Anfrage zur Begleitung für Kinder und Jugendliche',
+    medicalNote:'Diese Begleitung ersetzt keine ärztliche, psychologische oder psychotherapeutische Abklärung oder Behandlung.'
+  },
   kinder: {
     title:'Baby- & Kinderbehandlung', eyebrow:'FÜR BABYS & KINDER BIS 12 JAHRE', image:'kinder-teddy-20261029.webp', alt:'Illustration: Ein heller Stoffteddybär neben zwei grünen Keimlingen in warmem Licht',
     paragraphs:['Auch die Kleinen dürfen sich Zeit zum Ankommen nehmen. Ich begleite Babys und Kinder bis 12 Jahre mit achtsamer, sanfter Körperarbeit.', 'Wir richten uns nach dem Alter, dem Empfinden und dem Tempo deines Kindes. Was gerade passend ist, besprechen wir gemeinsam.'],
@@ -156,12 +181,13 @@ for (const trigger of qsa('[data-offer]')) {
   trigger.addEventListener('click', () => {
     const key = trigger.dataset.offer;
     const o = offerDetails[key];
-    const media = o.extraImage ? `<div class="detail-media-group"><img class="detail-media" src="assets/${o.image}" alt="${o.alt}"><img class="detail-media detail-media--scar" src="assets/${o.extraImage}" alt="${o.extraAlt}"></div>` : o.image ? `<img class="detail-media${key === 'mental' ? ' detail-media--mental' : key === 'kinder' ? ' detail-media--children' : ''}" src="assets/${o.image}" alt="${o.alt}">` : `<div class="child-detail-art" aria-hidden="true"><svg viewBox="32 40 188 174" focusable="false"><image href="assets/daniela-logo.webp" width="1200" height="218"/></svg><span>Kleine Menschen. Großes Gefühl.</span></div>`;
-    const priceList = `<dl class="treatment-prices treatment-prices--detail">${o.prices.map(([label,amount])=>`<div><dt>${label}</dt><dd>${amount} €</dd></div>`).join('')}</dl><p class="price-note">Standardpreise · Aktionen werden gesondert ausgewiesen.</p>`;
+    const media = o.extraImage ? `<div class="detail-media-group"><img class="detail-media" src="assets/${o.image}" alt="${o.alt}"><img class="detail-media detail-media--scar" src="assets/${o.extraImage}" alt="${o.extraAlt}"></div>` : o.image ? `<img class="detail-media${key === 'mental' ? ' detail-media--mental' : (key === 'kinder' || key === 'kindermental') ? ' detail-media--children' : ''}" src="assets/${o.image}" alt="${o.alt}">` : `<div class="child-detail-art" aria-hidden="true"><svg viewBox="32 40 188 174" focusable="false"><image href="assets/daniela-logo.webp" width="1200" height="218"/></svg><span>Kleine Menschen. Großes Gefühl.</span></div>`;
+    const priceList = o.prices.length ? `<dl class="treatment-prices treatment-prices--detail">${o.prices.map(([label,amount])=>`<div><dt>${label}</dt><dd>${amount} €</dd></div>`).join('')}</dl><p class="price-note">Standardpreise · Aktionen werden gesondert ausgewiesen.</p>` : '';
     const firstTreatment = key === 'shiatsu' ? '<button class="button" data-book="shiatsu-erst">Erstbehandlung anfragen ↗</button>' : '';
     const subtitle = o.subtitle ? `<p class="detail-subtitle"><em>${o.subtitle}</em></p>` : '';
     const sections = (o.sections || []).map(section => `<section class="detail-section"><h3>${section.title}</h3>${section.paragraphs.map(p=>`<p>${p}</p>`).join('')}${section.quote ? `<blockquote class="detail-quote">${section.quote}</blockquote>` : ''}</section>`).join('');
-    qs('#detail-content').innerHTML = `${media}<div class="detail-body"><p class="eyebrow">${o.eyebrow}</p><h2 id="detail-title">${o.title}</h2>${subtitle}${o.paragraphs.map(p=>`<p>${p}</p>`).join('')}${sections}<ul>${o.list.map(p=>`<li>${p}</li>`).join('')}</ul>${priceList}<div class="detail-booking-actions">${firstTreatment}<button class="${key === 'shiatsu' ? 'text-link' : 'button'}" data-book="${key}">${key === 'shiatsu' ? 'Weitere Shiatsu-Sitzung anfragen' : key === 'kinder' ? 'Kinderbehandlung anfragen' : 'Persönlichen Termin anfragen'} ↗</button></div><p class="medical-note">Diese Angebote ersetzen keine ärztliche Diagnose, Psychotherapie oder medizinische Behandlung.</p></div>`;
+    const inquiry = o.inquirySubject ? `<p>Umfang und Rahmen der Begleitung besprechen wir persönlich.</p><a class="button" href="mailto:daniela@shiatsu-kellner.at?subject=${encodeURIComponent(o.inquirySubject)}">Begleitung für dein Kind anfragen ↗</a>` : '';
+    qs('#detail-content').innerHTML = `${media}<div class="detail-body"><p class="eyebrow">${o.eyebrow}</p><h2 id="detail-title">${o.title}</h2>${subtitle}${o.paragraphs.map(p=>`<p>${p}</p>`).join('')}${sections}${o.list.length ? `<ul>${o.list.map(p=>`<li>${p}</li>`).join('')}</ul>` : ''}${priceList}${inquiry || `<div class="detail-booking-actions">${firstTreatment}<button class="${key === 'shiatsu' ? 'text-link' : 'button'}" data-book="${key}">${key === 'shiatsu' ? 'Weitere Shiatsu-Sitzung anfragen' : key === 'kinder' ? 'Kinderbehandlung anfragen' : 'Persönlichen Termin anfragen'} ↗</button></div>`}<p class="medical-note">${o.medicalNote || 'Diese Angebote ersetzen keine ärztliche Diagnose, Psychotherapie oder medizinische Behandlung.'}</p></div>`;
     showDialog(detailDialog, trigger);
   });
 }
