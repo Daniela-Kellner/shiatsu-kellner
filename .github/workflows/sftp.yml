@@ -3,6 +3,9 @@ name: Deploy website via SFTP
 on:
   push:
     branches: [main]
+    paths:
+      - '.github/workflows/sftp.yml'
+      - 'website/**'
   workflow_dispatch:
 
 permissions:
