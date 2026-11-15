@@ -186,3 +186,14 @@ dialog{padding:0;border:1px solid #d7d7c9;box-shadow:0 35px 100px #15231933;back
 
 /* Shiatsu-Titelfoto: Bildausschnitt der Seebuehnen-Aufnahme vom 29.10.2026. */
 .offer-card:first-child .offer-image img{object-position:43% 51%}
+
+/* Weiterführende Informationen zum Paar-Ritual. */
+.pair-details{max-width:390px;margin-top:22px;border-top:1px solid #cecaaf;border-bottom:1px solid #cecaaf}
+.pair-details summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;list-style:none;cursor:pointer;font-size:13px;color:var(--ink)}
+.pair-details summary::-webkit-details-marker{display:none}
+.pair-details summary:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:2px}
+.pair-details summary>span{flex-shrink:0;font-size:23px;line-height:1;color:var(--gold);transition:transform .2s}
+.pair-details[open] summary>span{transform:rotate(45deg)}
+.pair-details-content p{font-size:14px;line-height:1.85;color:#696b5e;margin:0 0 16px}
+.pair-details-content strong{font-weight:500;color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.pair-details summary>span{transition:none}}
