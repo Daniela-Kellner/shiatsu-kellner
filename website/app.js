@@ -171,9 +171,9 @@ const offerDetails = {
     medicalNote:'Diese Begleitung ersetzt keine ärztliche, psychologische oder psychotherapeutische Abklärung oder Behandlung.'
   },
   kinder: {
-    title:'Baby- & Kinderbehandlung', eyebrow:'FÜR BABYS & KINDER BIS 12 JAHRE', image:'kinder-teddy-20261029.webp', alt:'Illustration: Ein heller Stoffteddybär neben zwei grünen Keimlingen in warmem Licht',
-    paragraphs:['Auch die Kleinen dürfen sich Zeit zum Ankommen nehmen. Ich begleite Babys und Kinder bis 12 Jahre mit achtsamer, sanfter Körperarbeit.', 'Wir richten uns nach dem Alter, dem Empfinden und dem Tempo deines Kindes. Was gerade passend ist, besprechen wir gemeinsam.'],
-    list:['Für Babys und Kinder bis 12 Jahre','Achtsame Berührung und Raum zum Wohlfühlen','40 Minuten Zeit für dein Kind'],
+    title:'Kinderbehandlung', eyebrow:'ACHTSAME KÖRPERARBEIT · BIS 12 JAHRE', image:'kinder-teddy-20261029.webp', alt:'Illustration: Ein heller Stoffteddybär neben zwei grünen Keimlingen in warmem Licht',
+    paragraphs:['Auch die Kleinen dürfen sich Zeit zum Ankommen nehmen. Ich begleite Kinder bis 12 Jahre mit achtsamer, sanfter Körperarbeit.', 'Wir richten uns nach dem Alter, dem Empfinden und dem Tempo deines Kindes. Was gerade passend ist, besprechen wir gemeinsam.'],
+    list:['Für Kinder bis 12 Jahre','Achtsame Berührung und Raum zum Wohlfühlen','40 Minuten Zeit für dein Kind'],
     prices:[['40 Minuten · bis 12 Jahre',55]]
   }
 };
