@@ -7,6 +7,7 @@ function initializePhotoGallery(root) {
   if (!dialog || !items.length) return;
   const photos = items.map(item => ({
     src: item.dataset.gallerySrc,
+    tone: item.dataset.galleryTone,
     alt: item.querySelector('img').alt,
     title: item.querySelector('[data-gallery-title]').textContent,
     caption: item.querySelector('[data-gallery-caption]').textContent
@@ -29,6 +30,7 @@ function initializePhotoGallery(root) {
     const photo = photos[activePhoto];
     image.src = photo.src;
     image.alt = photo.alt;
+    image.classList.toggle('gallery-image--sepia', photo.tone === 'sepia');
     title.textContent = photo.title;
     caption.textContent = photo.caption;
     counter.textContent = String(activePhoto + 1).padStart(2, '0') + ' / ' + String(photos.length).padStart(2, '0');

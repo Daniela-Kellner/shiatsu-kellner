@@ -165,6 +165,33 @@ const offerDetails = {
     prices:[['90 Minuten',119]],
     medicalNote:'Die Begleitung ersetzt keine ärztliche Abklärung, Wundversorgung oder psychotherapeutische Behandlung.'
   },
+  schwangerschaft: {
+    title:'Schwangerschaft, Geburt & Baby', eyebrow:'ACHTSAM BEGLEITET · VON ANFANG AN', image:'schwangerschaft-portraet.jpeg', alt:'Eine schwangere Frau blickt liebevoll auf ihren Bauch', extraImage:'schwangerschaft-herzhaende.jpeg', extraAlt:'Zwei Hände formen ein Herz auf einem schwangeren Bauch',
+    subtitle:'Getragen sein. Vertrauen finden. Gemeinsam ankommen.',
+    paragraphs:[
+      'Wenn neues Leben wächst, verändert sich vieles. Dein Körper, deine Gefühle, deine Beziehungen und der Blick auf das, was vor dir liegt. Vorfreude und Vertrauen dürfen dabei ebenso ihren Platz haben wie Fragen, Unsicherheit oder das Bedürfnis nach Ruhe.',
+      'Ich begleite dich in dieser besonderen Lebensphase mit achtsamer Körperarbeit, persönlicher Zuwendung und einem offenen Ohr für das, was dich bewegt – während der Schwangerschaft, rund um die Geburt und in der ersten Zeit mit deinem Baby.'
+    ],
+    sections:[
+      {title:'Während der Schwangerschaft', paragraphs:[
+        'Ein Raum für dich und die Verbindung zu deinem werdenden Kind. Mit Shiatsu, Gesprächen und meinen ganzheitlichen Zugängen richte ich mich nach deinem Befinden und dem, was gerade Aufmerksamkeit braucht.',
+        'Du darfst innehalten, deinen Körper bewusst wahrnehmen und deinen eigenen Bedürfnissen nachspüren. Berührung, Position und Tempo stimmen wir individuell auf dich ab.'
+      ]},
+      {title:'Rund um die Geburt', paragraphs:[
+        'Auch deine Gedanken, Wünsche und Gefühle zur Geburt dürfen Raum bekommen. Ich begleite dich dabei, deine eigenen Ressourcen wahrzunehmen und herauszufinden, was dir Halt und Vertrauen gibt.',
+        'Nach persönlicher Absprache ist auch eine Geburtsbegleitung möglich. Gemeinsam klären wir frühzeitig, wie du dir meine Unterstützung wünschst und welcher Rahmen dafür passend ist.'
+      ]},
+      {title:'Im Wochenbett und danach', paragraphs:[
+        'Nach der Geburt beginnt ein neues Kennenlernen – deines Babys, deines veränderten Körpers und eures gemeinsamen Alltags. Auch du darfst in dieser Zeit Zuwendung erfahren.',
+        'Ich gebe Raum für dein Befinden, für Ruhe und für das, was du erlebt hast. Ebenso findet dein Baby mit seinen Bedürfnissen und seinem eigenen Rhythmus Platz in meiner Begleitung. Achtsame Berührung und Körperwahrnehmung können euch beim gemeinsamen Ankommen begleiten.'
+      ]},
+      {title:'So individuell wie du und dein Baby', paragraphs:[
+        'Ich verbinde meine langjährige Erfahrung mit Einfühlungsvermögen und einer feinen Wahrnehmung für eure jeweilige Situation. Welche meiner Zugänge einfließen, entsteht aus dem, was ihr gerade braucht.'
+      ], quote:'Du musst nicht alles schon wissen oder können. Du und dein Baby dürft euren eigenen Weg finden.'}
+    ],
+    list:[], prices:[], inquirySubject:'Anfrage zur Begleitung in Schwangerschaft, Geburt und Babyzeit', inquiryLabel:'Begleitung für dich und dein Baby anfragen',
+    medicalNote:'Meine Begleitung ergänzt die Betreuung durch Hebamme und Ärztin oder Arzt. Sie ersetzt keine medizinische oder geburtshilfliche Versorgung.'
+  },
   kindermental: {
     title:'Kinder & Jugendliche', eyebrow:'MENTALTRAINING & GANZHEITLICHE BEGLEITUNG', image:'kinder-teddy-20261029.webp', alt:'Ein heller Stoffteddybär neben zwei grünen Keimlingen in warmem Licht',
     subtitle:'Mit Vertrauen wachsen. Sich selbst treu bleiben.',
@@ -201,12 +228,12 @@ for (const trigger of qsa('[data-offer]')) {
   trigger.addEventListener('click', () => {
     const key = trigger.dataset.offer;
     const o = offerDetails[key];
-    const media = o.extraImage ? `<div class="detail-media-group"><img class="detail-media" src="assets/${o.image}" alt="${o.alt}"><img class="detail-media detail-media--scar" src="assets/${o.extraImage}" alt="${o.extraAlt}"></div>` : o.image ? `<img class="detail-media${key === 'mental' ? ' detail-media--mental' : (key === 'kinder' || key === 'kindermental') ? ' detail-media--children' : ''}" src="assets/${o.image}" alt="${o.alt}">` : `<div class="child-detail-art" aria-hidden="true"><svg viewBox="32 40 188 174" focusable="false"><image href="assets/daniela-logo.webp" width="1200" height="218"/></svg><span>Kleine Menschen. Großes Gefühl.</span></div>`;
+    const media = o.extraImage ? `<div class="detail-media-group${key === 'schwangerschaft' ? ' detail-media-group--pregnancy' : ''}"><img class="detail-media" src="assets/${o.image}" alt="${o.alt}"><img class="detail-media detail-media--scar" src="assets/${o.extraImage}" alt="${o.extraAlt}"></div>` : o.image ? `<img class="detail-media${key === 'mental' ? ' detail-media--mental' : (key === 'kinder' || key === 'kindermental') ? ' detail-media--children' : ''}" src="assets/${o.image}" alt="${o.alt}">` : `<div class="child-detail-art" aria-hidden="true"><svg viewBox="32 40 188 174" focusable="false"><image href="assets/daniela-logo.webp" width="1200" height="218"/></svg><span>Kleine Menschen. Großes Gefühl.</span></div>`;
     const priceList = o.prices.length ? `<dl class="treatment-prices treatment-prices--detail">${o.prices.map(([label,amount])=>`<div><dt>${label}</dt><dd>${amount} €</dd></div>`).join('')}</dl><p class="price-note">Standardpreise · Aktionen werden gesondert ausgewiesen.</p>` : '';
     const firstTreatment = key === 'shiatsu' ? '<button class="button" data-book="shiatsu-erst">Erstbehandlung anfragen ↗</button>' : '';
     const subtitle = o.subtitle ? `<p class="detail-subtitle"><em>${o.subtitle}</em></p>` : '';
     const sections = (o.sections || []).map(section => `<section class="detail-section"><h3>${section.title}</h3>${section.paragraphs.map(p=>`<p>${p}</p>`).join('')}${section.quote ? `<blockquote class="detail-quote">${section.quote}</blockquote>` : ''}</section>`).join('');
-    const inquiry = o.inquirySubject ? `<p>Umfang und Rahmen der Begleitung besprechen wir persönlich.</p><a class="button" href="mailto:daniela@shiatsu-kellner.at?subject=${encodeURIComponent(o.inquirySubject)}">Begleitung für dein Kind anfragen ↗</a>` : '';
+    const inquiry = o.inquirySubject ? `<p>Umfang und Rahmen der Begleitung besprechen wir persönlich.</p><a class="button" href="mailto:daniela@shiatsu-kellner.at?subject=${encodeURIComponent(o.inquirySubject)}">${o.inquiryLabel || 'Begleitung für dein Kind anfragen'} ↗</a>` : '';
     qs('#detail-content').innerHTML = `${media}<div class="detail-body"><p class="eyebrow">${o.eyebrow}</p><h2 id="detail-title">${o.title}</h2>${subtitle}${o.paragraphs.map(p=>`<p>${p}</p>`).join('')}${sections}${o.list.length ? `<ul>${o.list.map(p=>`<li>${p}</li>`).join('')}</ul>` : ''}${priceList}${inquiry || `<div class="detail-booking-actions">${firstTreatment}<button class="${key === 'shiatsu' ? 'text-link' : 'button'}" data-book="${key}">${key === 'shiatsu' ? 'Weitere Shiatsu-Sitzung anfragen' : key === 'kinder' ? 'Kinderbehandlung anfragen' : 'Persönlichen Termin anfragen'} ↗</button></div>`}<p class="medical-note">${o.medicalNote || 'Diese Angebote ersetzen keine ärztliche Diagnose, Psychotherapie oder medizinische Behandlung.'}</p></div>`;
     showDialog(detailDialog, trigger);
   });

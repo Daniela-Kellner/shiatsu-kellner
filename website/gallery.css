@@ -38,3 +38,6 @@
 .gallery-overview-dialog .gallery-intro-copy{max-width:none;font-size:13px}
 @media(max-width:640px){.gallery-overview-dialog{width:calc(100% - 24px);max-height:calc(100dvh - 24px)}.gallery-overview-toolbar{padding:10px 12px}.gallery-overview-dialog .photo-gallery{padding:3px 20px 28px}.gallery-overview-dialog .gallery-intro h2{font-size:48px}.gallery-overview-dialog .gallery-intro .eyebrow{font-size:9px}.gallery-overview-dialog .gallery-intro-copy{margin-top:20px}}
 @media print{.gallery-overview-dialog{display:none!important}}
+
+/* Einheitlicher warmer Fototon in Übersicht und Großansicht. */
+.gallery-image--sepia{filter:grayscale(1) sepia(.5) saturate(.8) contrast(.95)}
