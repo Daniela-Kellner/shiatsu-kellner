@@ -254,3 +254,16 @@ dialog{padding:0;border:1px solid #d7d7c9;box-shadow:0 35px 100px #15231933;back
 @media(max-width:640px){.offer-card--pregnancy{grid-template-columns:1fr}.offer-card--pregnancy .pregnancy-image{height:380px;max-width:330px;margin:auto}.detail-media-group--pregnancy{grid-template-columns:1fr}.detail-media-group--pregnancy .detail-media{height:auto;max-height:420px}.detail-media-group--pregnancy .detail-media:first-child{height:360px}}
 
 .detail-media--shiatsu{object-position:32% 48%}
+
+/* Persönliche Stimmen: ruhige Zitatflächen statt fehlender Porträtbilder. */
+.voices .section-heading{margin-bottom:18px}
+.voices-intro{max-width:600px;font-size:14px;line-height:1.85;color:var(--muted);margin:0 0 30px}
+.voice-grid{gap:22px;align-items:stretch}
+.voice-grid figure{display:flex;flex-direction:column;align-items:flex-start;padding:26px 26px 25px;border:0;border-radius:5px;background:#f0eadf}
+.voice-grid figure>span{display:block;font-size:64px;height:39px;color:#9a783f}
+.voice-grid blockquote{font-size:30px;line-height:1.22;min-height:0;max-width:none;margin:12px 0 28px;flex:1;color:var(--ink)}
+.voice-grid figcaption{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding-top:16px;border-top:1px solid #d9ceb9;width:100%}
+.voice-name{font-family:var(--serif);font-size:23px;color:var(--sage-dark)}
+.voice-grid small{font-size:11px;color:var(--muted)}
+.voices .source-note{font-size:11px;margin-top:18px}
+@media(max-width:900px){.voice-grid{grid-template-columns:1fr;gap:16px}.voice-grid figure{padding:22px 25px}.voice-grid blockquote{font-size:29px;margin:7px 0 22px}.voice-grid figure>span{height:30px;font-size:55px}}
