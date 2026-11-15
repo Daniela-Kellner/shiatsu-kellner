@@ -237,3 +237,7 @@ dialog{padding:0;border:1px solid #d7d7c9;box-shadow:0 35px 100px #15231933;back
 .hero-note em{color:#7e5e2e}
 @media(max-width:640px){.hero-note{left:12px;bottom:88px;max-width:calc(100% - 24px);padding:9px 13px}.hero-note>span:last-child{font-size:20px}}
 @supports not (backdrop-filter:blur(6px)){.hero-note{background:rgba(248,245,239,.94)}}
+
+/* Die beiden besonderen Angebote erhalten einen eigenen Auftritt. */
+.pair-section + .river-section{margin-top:56px}
+@media(max-width:640px){.pair-section + .river-section{margin-top:36px}}
