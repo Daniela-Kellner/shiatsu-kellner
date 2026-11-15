@@ -210,3 +210,6 @@ dialog{padding:0;border:1px solid #d7d7c9;box-shadow:0 35px 100px #15231933;back
 .about-copy>.about-guiding-line{padding:14px 0 14px 18px;border-left:2px solid var(--gold);color:var(--sage-dark)}
 .about-copy>.about-guiding-line strong{font-weight:500}
 @media(max-width:640px){.about-copy>h3{font-size:26px;margin-top:26px}}
+
+/* Kleine persönliche Notiz unter dem Porträt, damit das Gesicht frei bleibt. */
+.portrait-display .portrait-note{position:static;display:block;width:max-content;max-width:100%;margin:12px 0 0 auto;padding:10px 14px;font-size:18px;line-height:1.2;transform:rotate(2deg);transform-origin:center;box-shadow:0 4px 14px #303c3312}
