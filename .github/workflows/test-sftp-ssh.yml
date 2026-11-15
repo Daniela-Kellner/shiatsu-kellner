@@ -1,0 +1,72 @@
+name: Test SSH and rsync support
+
+on:
+  push:
+    branches: [test/sftp-ssh-rsync-support]
+    paths:
+      - '.github/workflows/test-sftp-ssh.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-ssh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Install SSH password helper
+        run: sudo apt-get update && sudo apt-get install --yes sshpass
+
+      - name: Check SSH command access and remote rsync
+        env:
+          SFTP_URL: ${{ secrets.SFTP_URL }}
+          SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
+          SSHPASS: ${{ secrets.SFTP_PASSWORD }}
+        shell: python
+        run: |
+          import os
+          import subprocess
+          import sys
+          from urllib.parse import urlsplit
+
+          for name in ("SFTP_URL", "SFTP_USERNAME", "SSHPASS"):
+              if not os.environ.get(name):
+                  sys.exit(f"Missing required secret for {name}")
+
+          url = urlsplit(os.environ["SFTP_URL"])
+          if url.scheme != "sftp" or not url.hostname:
+              sys.exit("SFTP_URL must be an sftp:// URL")
+
+          remote_command = """
+          set -eu
+          printf 'SSH command execution is available.\n'
+          if command -v rsync; then
+              rsync --version
+          else
+              printf 'rsync is not installed or is not on PATH.\n'
+              exit 2
+          fi
+          """
+          try:
+              result = subprocess.run(
+                  [
+                      "sshpass", "-e", "ssh", "-T",
+                      "-p", str(url.port or 22),
+                      "-o", "ConnectTimeout=15",
+                      "-o", "StrictHostKeyChecking=accept-new",
+                      "-o", "NumberOfPasswordPrompts=1",
+                      "-o", "PubkeyAuthentication=no",
+                      "-o", "PreferredAuthentications=password,keyboard-interactive",
+                      "-l", os.environ["SFTP_USERNAME"],
+                      url.hostname,
+                      remote_command,
+                  ],
+                  timeout=45,
+              )
+          except subprocess.TimeoutExpired:
+              sys.exit("SSH test timed out; shell access may be restricted.")
+
+          if result.returncode:
+              print("SSH/rsync test failed. Check the output above for shell restrictions, missing rsync, or authentication errors.", flush=True)
+          sys.exit(result.returncode)
