@@ -101,9 +101,30 @@ window.matchMedia('(min-width:901px)').addEventListener('change', e => {if(e.mat
 
 const offerDetails = {
   shiatsu: {
-    title:'Shiatsu', eyebrow:'ACHTSAME KÖRPERARBEIT', image:'shiatsu.webp', alt:'Achtsame Shiatsu-Berührung an Nacken und Schulter',
-    paragraphs:['Shiatsu ist eine Form der manuellen Körperarbeit aus Japan. Mit achtsamem Druck, Dehnungen und sanften Bewegungen widmen wir uns deinem Körper. Die Intensität stimmen wir auf dein Empfinden ab.', 'Die Behandlung findet auf einer Matte statt. Du bleibst dabei bequem bekleidet. Ein Gespräch zu Beginn und Zeit zum Nachspüren gehören dazu.'],
-    list:['Zeit für dein persönliches Anliegen','Die Erstbehandlung dauert immer 90 Minuten.','Weitere Sitzungen sind mit 60 oder 90 Minuten möglich.'],
+    title:'Shiatsu', eyebrow:'DIE KUNST DER ACHTSAMEN BERÜHRUNG', image:'shiatsu.webp', alt:'Achtsame Shiatsu-Berührung an Nacken und Schulter',
+    subtitle:'Berührung, die dich als ganzen Menschen wahrnimmt.',
+    paragraphs:[
+      'Manchmal braucht es keine Worte, sondern einen Raum, in dem du ankommen und dich selbst wieder spüren darfst.',
+      'Shiatsu ist eine ganzheitliche Form der manuellen Körperarbeit aus Japan. Ihre Wurzeln liegen in traditionellen japanischen und chinesischen Gesundheitslehren. Dabei werden Körper, Gedanken und Gefühle als miteinander verbunden betrachtet. Im Mittelpunkt stehst du – mit deiner Geschichte, deiner Lebenssituation und dem, was dich gerade bewegt.'
+    ],
+    sections:[
+      {title:'Jede Begegnung ist einzigartig', paragraphs:[
+        'Keine Shiatsu-Behandlung gleicht der anderen. Was du mitbringst, wie du dich fühlst und was du dir wünschst, gibt unserer gemeinsamen Zeit die Richtung.',
+        'Mit achtsamem Druck, sanften Dehnungen, Rotationen, Schaukeln und Ruhephasen entsteht eine Behandlung, die sich an dir orientiert. Intensität und Tempo stimmen wir auf dein Empfinden ab. So darf Raum entstehen, um Anspannung wahrzunehmen, zur Ruhe zu kommen und neue Beweglichkeit zu entdecken – körperlich wie innerlich.'
+      ]},
+      {title:'Mein Zugang: mit den Händen lauschen', paragraphs:[
+        'Seit 2001 begleite ich Menschen mit Körperarbeit und persönlicher Zuwendung. In meine Arbeit fließen neben meiner Ausbildung auch Lebenserfahrung, Menschenkenntnis, Intuition und Einfühlungsvermögen ein.',
+        'Mit meinen Händen höre ich zu. Ich nehme mir Zeit, mich auf dich einzulassen: auf deinen Körper, deinen Atem und auf das, was dich über das Körperliche hinaus beschäftigt. Dabei bleiben deine Wahrnehmung und deine Grenzen mein Maßstab.'
+      ], quote:'Ich folge keinem starren Ablauf. Ich begegne dir als Mensch.'},
+      {title:'Raum für dein Anliegen', paragraphs:[
+        'Vielleicht wünschst du dir Entspannung in einer belastenden Zeit, mehr Körperbewusstsein oder eine bewusste Auszeit. Vielleicht suchst du achtsame Begleitung in einer Lebensphase, die Veränderungen mit sich bringt.',
+        'Du musst dein Anliegen nicht schon genau benennen können. Wir finden gemeinsam heraus, was für dich gerade stimmig ist.'
+      ]},
+      {title:'So läuft deine Behandlung ab', paragraphs:[
+        'Zu Beginn sprechen wir über dein Befinden und deine Wünsche. Die Behandlung findet in bequemer Kleidung auf einer Matte am Boden statt. Zum Abschluss bleibt Zeit zum Nachspüren.'
+      ]}
+    ],
+    list:['Die Erstbehandlung dauert immer 90 Minuten.','Weitere Sitzungen sind mit 60 oder 90 Minuten möglich.'],
     prices:[['Erstbehandlung · 90 Minuten',119],['Shiatsu-Sitzung · 60 Minuten',89],['Shiatsu-Sitzung · 90 Minuten',119]]
   },
   mental: {
@@ -138,7 +159,9 @@ for (const trigger of qsa('[data-offer]')) {
     const media = o.extraImage ? `<div class="detail-media-group"><img class="detail-media" src="assets/${o.image}" alt="${o.alt}"><img class="detail-media detail-media--scar" src="assets/${o.extraImage}" alt="${o.extraAlt}"></div>` : o.image ? `<img class="detail-media${key === 'mental' ? ' detail-media--mental' : key === 'kinder' ? ' detail-media--children' : ''}" src="assets/${o.image}" alt="${o.alt}">` : `<div class="child-detail-art" aria-hidden="true"><svg viewBox="32 40 188 174" focusable="false"><image href="assets/daniela-logo.webp" width="1200" height="218"/></svg><span>Kleine Menschen. Großes Gefühl.</span></div>`;
     const priceList = `<dl class="treatment-prices treatment-prices--detail">${o.prices.map(([label,amount])=>`<div><dt>${label}</dt><dd>${amount} €</dd></div>`).join('')}</dl><p class="price-note">Standardpreise · Aktionen werden gesondert ausgewiesen.</p>`;
     const firstTreatment = key === 'shiatsu' ? '<button class="button" data-book="shiatsu-erst">Erstbehandlung anfragen ↗</button>' : '';
-    qs('#detail-content').innerHTML = `${media}<div class="detail-body"><p class="eyebrow">${o.eyebrow}</p><h2 id="detail-title">${o.title}</h2>${o.paragraphs.map(p=>`<p>${p}</p>`).join('')}<ul>${o.list.map(p=>`<li>${p}</li>`).join('')}</ul>${priceList}<div class="detail-booking-actions">${firstTreatment}<button class="${key === 'shiatsu' ? 'text-link' : 'button'}" data-book="${key}">${key === 'shiatsu' ? 'Weitere Shiatsu-Sitzung anfragen' : key === 'kinder' ? 'Kinderbehandlung anfragen' : 'Persönlichen Termin anfragen'} ↗</button></div><p class="medical-note">Diese Angebote ersetzen keine ärztliche Diagnose, Psychotherapie oder medizinische Behandlung.</p></div>`;
+    const subtitle = o.subtitle ? `<p class="detail-subtitle"><em>${o.subtitle}</em></p>` : '';
+    const sections = (o.sections || []).map(section => `<section class="detail-section"><h3>${section.title}</h3>${section.paragraphs.map(p=>`<p>${p}</p>`).join('')}${section.quote ? `<blockquote class="detail-quote">${section.quote}</blockquote>` : ''}</section>`).join('');
+    qs('#detail-content').innerHTML = `${media}<div class="detail-body"><p class="eyebrow">${o.eyebrow}</p><h2 id="detail-title">${o.title}</h2>${subtitle}${o.paragraphs.map(p=>`<p>${p}</p>`).join('')}${sections}<ul>${o.list.map(p=>`<li>${p}</li>`).join('')}</ul>${priceList}<div class="detail-booking-actions">${firstTreatment}<button class="${key === 'shiatsu' ? 'text-link' : 'button'}" data-book="${key}">${key === 'shiatsu' ? 'Weitere Shiatsu-Sitzung anfragen' : key === 'kinder' ? 'Kinderbehandlung anfragen' : 'Persönlichen Termin anfragen'} ↗</button></div><p class="medical-note">Diese Angebote ersetzen keine ärztliche Diagnose, Psychotherapie oder medizinische Behandlung.</p></div>`;
     showDialog(detailDialog, trigger);
   });
 }

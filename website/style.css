@@ -197,3 +197,10 @@ dialog{padding:0;border:1px solid #d7d7c9;box-shadow:0 35px 100px #15231933;back
 .pair-details-content p{font-size:14px;line-height:1.85;color:#696b5e;margin:0 0 16px}
 .pair-details-content strong{font-weight:500;color:var(--ink)}
 @media(prefers-reduced-motion:reduce){.pair-details summary>span{transition:none}}
+
+/* Lesbare Gliederung der ausführlichen Angebotsbeschreibung. */
+.detail-body .detail-subtitle{font-size:18px;line-height:1.5;color:var(--sage-dark);margin:0 0 22px}
+.detail-section{margin-top:28px}
+.detail-section h3{font-family:var(--serif);font-size:27px;line-height:1.2;font-weight:500;color:var(--ink);margin:0 0 14px}
+.detail-body .detail-quote{margin:22px 0;padding:4px 0 4px 18px;border-left:2px solid var(--gold);font-family:var(--serif);font-style:italic;font-size:23px;line-height:1.45;color:var(--sage-dark)}
+@media(max-width:640px){.detail-section h3{font-size:25px}.detail-body .detail-subtitle{font-size:17px}.detail-body .detail-quote{font-size:21px}}
