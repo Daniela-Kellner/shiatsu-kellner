@@ -229,3 +229,11 @@ dialog{padding:0;border:1px solid #d7d7c9;box-shadow:0 35px 100px #15231933;back
 .river-word{color:var(--sage-panel-ink)}
 .river-copy .button-light,.contact-invitation .button-light{background:var(--sage);border-color:var(--sage);color:var(--paper)}
 .river-copy .button-light:hover,.contact-invitation .button-light:hover{background:var(--sage-dark);border-color:var(--sage-dark)}
+
+/* Zurückhaltende, durchscheinende Einladung über dem Einstiegsfilm. */
+.hero-note{left:18px;bottom:98px;z-index:5;display:block;max-width:calc(100% - 36px);padding:10px 16px;background:rgba(248,245,239,.86);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,253,250,.5);border-radius:5px;box-shadow:0 4px 16px #303c3312;transform:none;color:var(--ink)}
+.hero-note .note-symbol{display:none}
+.hero-note>span:last-child{font-size:20px;line-height:1.25}
+.hero-note em{color:#7e5e2e}
+@media(max-width:640px){.hero-note{left:12px;bottom:88px;max-width:calc(100% - 24px);padding:9px 13px}.hero-note>span:last-child{font-size:20px}}
+@supports not (backdrop-filter:blur(6px)){.hero-note{background:rgba(248,245,239,.94)}}
