@@ -101,7 +101,7 @@ window.matchMedia('(min-width:901px)').addEventListener('change', e => {if(e.mat
 
 const offerDetails = {
   shiatsu: {
-    title:'Shiatsu', eyebrow:'DIE KUNST DER ACHTSAMEN BERÜHRUNG', image:'shiatsu.webp', alt:'Achtsame Shiatsu-Berührung an Nacken und Schulter',
+    title:'Shiatsu', eyebrow:'DIE KUNST DER ACHTSAMEN BERÜHRUNG', image:'gallery/shiatsu-seebuehne-behandlung.webp', alt:'Daniela bei einer Shiatsu-Behandlung auf der Seebühne mit Blick ins Grüne',
     subtitle:'Berührung, die dich als ganzen Menschen wahrnimmt.',
     paragraphs:[
       'Manchmal braucht es keine Worte, sondern einen Raum, in dem du ankommen und dich selbst wieder spüren darfst.',
@@ -228,7 +228,7 @@ for (const trigger of qsa('[data-offer]')) {
   trigger.addEventListener('click', () => {
     const key = trigger.dataset.offer;
     const o = offerDetails[key];
-    const media = o.extraImage ? `<div class="detail-media-group${key === 'schwangerschaft' ? ' detail-media-group--pregnancy' : ''}"><img class="detail-media" src="assets/${o.image}" alt="${o.alt}"><img class="detail-media detail-media--scar" src="assets/${o.extraImage}" alt="${o.extraAlt}"></div>` : o.image ? `<img class="detail-media${key === 'mental' ? ' detail-media--mental' : (key === 'kinder' || key === 'kindermental') ? ' detail-media--children' : ''}" src="assets/${o.image}" alt="${o.alt}">` : `<div class="child-detail-art" aria-hidden="true"><svg viewBox="32 40 188 174" focusable="false"><image href="assets/daniela-logo.webp" width="1200" height="218"/></svg><span>Kleine Menschen. Großes Gefühl.</span></div>`;
+    const media = o.extraImage ? `<div class="detail-media-group${key === 'schwangerschaft' ? ' detail-media-group--pregnancy' : ''}"><img class="detail-media" src="assets/${o.image}" alt="${o.alt}"><img class="detail-media detail-media--scar" src="assets/${o.extraImage}" alt="${o.extraAlt}"></div>` : o.image ? `<img class="detail-media${key === 'shiatsu' ? ' detail-media--shiatsu' : key === 'mental' ? ' detail-media--mental' : (key === 'kinder' || key === 'kindermental') ? ' detail-media--children' : ''}" src="assets/${o.image}" alt="${o.alt}">` : `<div class="child-detail-art" aria-hidden="true"><svg viewBox="32 40 188 174" focusable="false"><image href="assets/daniela-logo.webp" width="1200" height="218"/></svg><span>Kleine Menschen. Großes Gefühl.</span></div>`;
     const priceList = o.prices.length ? `<dl class="treatment-prices treatment-prices--detail">${o.prices.map(([label,amount])=>`<div><dt>${label}</dt><dd>${amount} €</dd></div>`).join('')}</dl><p class="price-note">Standardpreise · Aktionen werden gesondert ausgewiesen.</p>` : '';
     const firstTreatment = key === 'shiatsu' ? '<button class="button" data-book="shiatsu-erst">Erstbehandlung anfragen ↗</button>' : '';
     const subtitle = o.subtitle ? `<p class="detail-subtitle"><em>${o.subtitle}</em></p>` : '';

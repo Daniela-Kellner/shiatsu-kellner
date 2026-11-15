@@ -185,7 +185,7 @@ dialog{padding:0;border:1px solid #d7d7c9;box-shadow:0 35px 100px #15231933;back
 @media(prefers-reduced-motion:reduce){.offer-card--children .child-offer-visual--photo>img{transition:none}}
 
 /* Shiatsu-Titelfoto: Bildausschnitt der Seebuehnen-Aufnahme vom 29.10.2026. */
-.offer-card:first-child .offer-image img{object-position:43% 51%}
+.offer-card:first-child .offer-image img{object-position:32% 48%}
 
 /* Weiterführende Informationen zum Paar-Ritual. */
 .pair-details{max-width:390px;margin-top:22px;border-top:1px solid #cecaaf;border-bottom:1px solid #cecaaf}
@@ -252,3 +252,5 @@ dialog{padding:0;border:1px solid #d7d7c9;box-shadow:0 35px 100px #15231933;back
 .detail-media-group--pregnancy .detail-media:first-child{object-fit:contain;background:#efe9dd}
 .detail-media-group--pregnancy .detail-media--scar{object-position:center;filter:grayscale(1) sepia(.5) saturate(.8) contrast(.95)}
 @media(max-width:640px){.offer-card--pregnancy{grid-template-columns:1fr}.offer-card--pregnancy .pregnancy-image{height:380px;max-width:330px;margin:auto}.detail-media-group--pregnancy{grid-template-columns:1fr}.detail-media-group--pregnancy .detail-media{height:auto;max-height:420px}.detail-media-group--pregnancy .detail-media:first-child{height:360px}}
+
+.detail-media--shiatsu{object-position:32% 48%}
