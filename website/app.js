@@ -140,10 +140,30 @@ const offerDetails = {
     prices:[['60 Minuten',89],['90 Minuten',119]]
   },
   moxa: {
-    title:'Moxa | Narben-Entstörungsbehandlung', eyebrow:'WÄRME & ACHTSAME NARBENARBEIT', image:'moxa.webp', alt:'Eine Moxa-Anwendung im Bereich einer Hand', extraImage:'narbenarbeit-bauch.webp', extraAlt:'Hände in Herzform über Narben am Bauch',
-    paragraphs:['Moxa ist eine traditionelle Wärmeanwendung mit Beifuß. Gemeinsam klären wir vorab, ob sie für dich passend ist.', 'Für die Moxa- und Narbenbehandlung nehmen wir uns 90 Minuten Zeit. Die konkrete Anwendung und die Arbeit im Bereich von Narben stimmen wir persönlich miteinander ab.'],
-    list:['Individuelle Abstimmung vor der Anwendung','Zeit für dein Anliegen, die Anwendung und das Nachspüren'],
-    prices:[['90 Minuten',119]]
+    title:'Moxa & Narbenarbeit', eyebrow:'WÄRME & ACHTSAME NARBENARBEIT', image:'moxa.webp', alt:'Eine Moxa-Anwendung im Bereich einer Hand', extraImage:'narbenarbeit-bauch.webp', extraAlt:'Hände in Herzform über Narben am Bauch',
+    subtitle:'Wärme spüren. Der eigenen Geschichte Raum geben.',
+    paragraphs:[
+      'Manche Spuren auf unserem Körper erzählen von besonderen Lebensereignissen. Eine Operation, eine Verletzung oder eine Geburt können nicht nur sichtbare Narben hinterlassen, sondern auch mit Empfindungen, Erinnerungen und Gefühlen verbunden sein.',
+      'In meiner Arbeit darf all das Aufmerksamkeit bekommen – behutsam, individuell und in deinem Tempo.'
+    ],
+    sections:[
+      {title:'Moxa – achtsame Wärme', paragraphs:[
+        'Moxa, auch Moxibustion genannt, ist eine traditionelle Wärmeanwendung aus der chinesischen Gesundheitslehre. Dabei wird getrockneter Beifuß verwendet, dessen Glut Wärme erzeugt. Diese wird gezielt und mit achtsamem Abstand an ausgewählte Körperbereiche herangeführt.',
+        'Gemeinsam besprechen wir, ob diese Anwendung für dich passend ist. Die Intensität richtet sich nach deinem Empfinden. Du darfst zur Ruhe kommen, die Wärme wahrnehmen und nachspüren, wie sie sich für dich anfühlt.'
+      ]},
+      {title:'Eine Narbe ist mehr als eine sichtbare Spur', paragraphs:[
+        'Vielleicht fühlt sich der Bereich einer Narbe verändert, empfindlich oder fremd an. Vielleicht ist das Gewebe längst verheilt, während das Erlebte innerlich noch Raum braucht. Und manchmal ist eine Narbe einfach ein selbstverständlicher Teil von dir.',
+        'Ich begegne ihr deshalb nicht losgelöst von dir, sondern im Zusammenhang mit deinem Körper, deiner Geschichte und deinem heutigen Befinden.'
+      ]},
+      {title:'Mein Zugang: behutsam Verbindung schaffen', paragraphs:[
+        'Die Moxa-Anwendung ist ein möglicher Bestandteil meiner Narbenarbeit. Ebenso wichtig sind für mich achtsame Berührung, Körperwahrnehmung und das persönliche Gespräch. Mit einem ganzheitlichen Blick beziehe ich körperliche Empfindungen und – soweit du das möchtest – auch die emotionale Bedeutung des Erlebten ein.',
+        'Integration bedeutet für mich, einer Narbe und ihrer Geschichte einen Platz geben zu dürfen. Es geht darum, wieder Verbindung zu diesem Teil deines Körpers zu finden und wahrzunehmen, was du dafür brauchst.',
+        'Du musst nichts erzählen, erklären oder erneut durchleben. Deine Grenzen bestimmen unseren gemeinsamen Weg.'
+      ], quote:'Narben erzählen Geschichten. Sie dürfen als Teil von dir angenommen werden – mit allem, was du erlebt hast.'}
+    ],
+    list:['90 Minuten Zeit für dein Anliegen, die Anwendung und das Nachspüren'],
+    prices:[['90 Minuten',119]],
+    medicalNote:'Die Begleitung ersetzt keine ärztliche Abklärung, Wundversorgung oder psychotherapeutische Behandlung.'
   },
   kindermental: {
     title:'Kinder & Jugendliche', eyebrow:'MENTALTRAINING & GANZHEITLICHE BEGLEITUNG', image:'kinder-teddy-20261029.webp', alt:'Ein heller Stoffteddybär neben zwei grünen Keimlingen in warmem Licht',
