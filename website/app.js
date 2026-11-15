@@ -225,7 +225,9 @@ const offerDetails = {
   }
 };
 for (const trigger of qsa('[data-offer]')) {
-  trigger.addEventListener('click', () => {
+  trigger.addEventListener('click', event => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
     const key = trigger.dataset.offer;
     const o = offerDetails[key];
     const media = o.extraImage ? `<div class="detail-media-group${key === 'schwangerschaft' ? ' detail-media-group--pregnancy' : ''}"><img class="detail-media" src="assets/${o.image}" alt="${o.alt}"><img class="detail-media detail-media--scar" src="assets/${o.extraImage}" alt="${o.extraAlt}"></div>` : o.image ? `<img class="detail-media${key === 'shiatsu' ? ' detail-media--shiatsu' : key === 'mental' ? ' detail-media--mental' : (key === 'kinder' || key === 'kindermental') ? ' detail-media--children' : ''}" src="assets/${o.image}" alt="${o.alt}">` : `<div class="child-detail-art" aria-hidden="true"><svg viewBox="32 40 188 174" focusable="false"><image href="assets/daniela-logo.webp" width="1200" height="218"/></svg><span>Kleine Menschen. Großes Gefühl.</span></div>`;

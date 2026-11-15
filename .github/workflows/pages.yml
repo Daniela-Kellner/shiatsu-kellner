@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/pages.yml'
       - 'website/**'
+      - 'scripts/build-search-pages.mjs'
   workflow_dispatch:
 
 permissions:
@@ -27,6 +28,9 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
+      - name: Prepare searchable offer pages
+        run: node scripts/build-search-pages.mjs
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
