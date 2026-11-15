@@ -267,3 +267,15 @@ dialog{padding:0;border:1px solid #d7d7c9;box-shadow:0 35px 100px #15231933;back
 .voice-grid small{font-size:11px;color:var(--muted)}
 .voices .source-note{font-size:11px;margin-top:18px}
 @media(max-width:900px){.voice-grid{grid-template-columns:1fr;gap:16px}.voice-grid figure{padding:22px 25px}.voice-grid blockquote{font-size:29px;margin:7px 0 22px}.voice-grid figure>span{height:30px;font-size:55px}}
+
+/* Drei Stimmen im Blick; weitere Erfahrungen lassen sich in Ruhe öffnen. */
+.voices-more{margin-top:24px}
+.voices-more>summary{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:280px;padding:14px 0;list-style:none;cursor:pointer;border-bottom:1px solid #b6bdac;font-size:14px;color:var(--sage-dark)}
+.voices-more>summary::-webkit-details-marker{display:none}
+.voices-more>summary>span{font-size:23px;line-height:1;color:var(--gold);transition:transform .2s}
+.voices-more[open]>summary>span{transform:rotate(45deg)}
+.voice-grid--more{margin-top:24px}
+@media(min-width:901px){.voice-grid--more{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.voices-more>summary>span{transition:none}}
+
+@media(min-width:901px){.voice-grid--more figure:last-child:nth-child(odd){grid-column:1 / -1}}
