@@ -41,3 +41,7 @@
 
 /* Einheitlicher warmer Fototon in Übersicht und Großansicht. */
 .gallery-image--sepia{filter:grayscale(1) sepia(.5) saturate(.8) contrast(.95)}
+
+.gallery-group-title{grid-column:1/-1;font:500 clamp(28px,3vw,38px)/1.2 Cormorant,serif;color:var(--ink);padding-top:30px;margin:15px 0 0;border-top:1px solid var(--line)}
+.gallery-group-title:first-child{padding-top:0;margin-top:0;border-top:0}
+@media(max-width:640px){.gallery-group-title{font-size:30px;padding-top:25px;margin-top:10px}}
