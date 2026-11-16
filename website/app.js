@@ -148,6 +148,29 @@ const offerDetails = {
     list:['Einzelbegleitung nach persönlicher Vereinbarung','Auch als längerfristiger gemeinsamer Prozess','Wähle einen Termin mit 60 oder 90 Minuten.'],
     prices:[['60 Minuten',89],['90 Minuten',119]]
   },
+  kakao: {
+    title:'Kakaozeremonien & Rituale', eyebrow:'BEWUSST GENIESSEN · VERBINDUNG ERLEBEN',
+    image:'kakao-zubereitung.svg', alt:'Kakao wird in einer goldfarbenen Schale mit einem Holzquirl zubereitet',
+    subtitle:'Zeit für Verbindung. Mit dir selbst und miteinander.',
+    paragraphs:[
+      'Rituale laden uns ein, aus dem Alltag herauszutreten und einem Moment bewusst Bedeutung zu geben. Ich gestalte und begleite unterschiedliche Rituale – auch mit zeremoniellem Kakao als Teil meiner Bewusstseinsarbeit.'
+    ],
+    sections:[
+      {title:'Kakao bewusst kennenlernen', paragraphs:[
+        'Für meine Kakaozeremonien verwende ich hochwertigen, zeremoniellen Kakao. Wer vor allem süßen Trinkkakao kennt, begegnet hier einer anderen Art des Genießens: Der ursprüngliche, kräftige Kakaogeschmack steht im Mittelpunkt.',
+        'Wir nehmen uns Zeit für Duft, Wärme und Geschmack. Mit einer persönlichen Intention – einem Wunsch, einem Anliegen oder einer Frage – richten wir unsere Aufmerksamkeit nach innen und kommen bewusst im gemeinsamen Kreis an.'
+      ]},
+      {title:'Ein Raum, der mit euch entsteht', paragraphs:[
+        'Mit Achtsamkeit, Feingefühl und meinen unterschiedlichen Zugängen begleite ich euch durch die Zeremonie. Je nach Anlass fließen verschiedene Ritualelemente ein. Dabei entsteht Raum zum Wahrnehmen, Nachspüren und für Begegnung.',
+        'Du darfst dich einbringen oder still dabei sein. Wie viel du teilen möchtest, entscheidest du selbst.'
+      ]},
+      {title:'Eine Kakaozeremonie bei euch', paragraphs:[
+        'Du kannst mich auch einladen, eine Kakaozeremonie an einem Ort deiner Wahl zu gestalten und zu halten. Anlass, Rahmen und Möglichkeiten besprechen wir persönlich, damit die Begleitung zu euch und euren Wünschen passt.'
+      ], image:'kakao-daniela.svg', imageAlt:'Daniela rührt persönlich den Kakao für eine Zeremonie an', imageCaption:'Mit Freude und Achtsamkeit vorbereitet.', imageWidth:1200, imageHeight:889, imageNatural:true}
+    ],
+    list:[], prices:[], inquirySubject:'Anfrage zu einer Kakaozeremonie', inquiryLabel:'Eine Kakaozeremonie anfragen',
+    medicalNote:'Die Kakaozeremonie ist ein Angebot zur bewussten Begegnung und Selbstwahrnehmung.'
+  },
   moxa: {
     title:'Moxa & Narbenarbeit', eyebrow:'WÄRME & ACHTSAME NARBENARBEIT', image:'moxa.webp', alt:'Eine Moxa-Anwendung im Bereich einer Hand', extraImage:'narbenarbeit-bauch.webp', extraAlt:'Hände in Herzform über Narben am Bauch',
     subtitle:'Wärme spüren. Der eigenen Geschichte Raum geben.',
@@ -239,11 +262,11 @@ for (const trigger of qsa('[data-offer]')) {
     event.preventDefault();
     const key = trigger.dataset.offer;
     const o = offerDetails[key];
-    const media = o.extraImage ? `<div class="detail-media-group${key === 'schwangerschaft' ? ' detail-media-group--pregnancy' : ''}"><img class="detail-media" src="assets/${o.image}" alt="${o.alt}"><img class="detail-media detail-media--scar" src="assets/${o.extraImage}" alt="${o.extraAlt}"></div>` : o.image ? `<img class="detail-media${key === 'shiatsu' ? ' detail-media--shiatsu' : key === 'mental' ? ' detail-media--mental' : (key === 'kinder' || key === 'kindermental') ? ' detail-media--children' : ''}" src="assets/${o.image}" alt="${o.alt}">` : `<div class="child-detail-art" aria-hidden="true"><svg viewBox="32 40 188 174" focusable="false"><image href="assets/daniela-logo.webp" width="1200" height="218"/></svg><span>Kleine Menschen. Großes Gefühl.</span></div>`;
+    const media = o.extraImage ? `<div class="detail-media-group${key === 'schwangerschaft' ? ' detail-media-group--pregnancy' : key === 'kakao' ? ' detail-media-group--kakao' : ''}"><img class="detail-media" src="assets/${o.image}" alt="${o.alt}"><img class="detail-media detail-media--scar" src="assets/${o.extraImage}" alt="${o.extraAlt}"></div>` : o.image ? `<img class="detail-media${key === 'shiatsu' ? ' detail-media--shiatsu' : key === 'mental' ? ' detail-media--mental' : key === 'kakao' ? ' detail-media--kakao' : (key === 'kinder' || key === 'kindermental') ? ' detail-media--children' : ''}" src="assets/${o.image}" alt="${o.alt}">` : `<div class="child-detail-art" aria-hidden="true"><svg viewBox="32 40 188 174" focusable="false"><image href="assets/daniela-logo.webp" width="1200" height="218"/></svg><span>Kleine Menschen. Großes Gefühl.</span></div>`;
     const priceList = o.prices.length ? `<dl class="treatment-prices treatment-prices--detail">${o.prices.map(([label,amount])=>`<div><dt>${label}</dt><dd>${amount} €</dd></div>`).join('')}</dl><p class="price-note">Standardpreise · Aktionen werden gesondert ausgewiesen.</p>` : '';
     const firstTreatment = key === 'shiatsu' ? '<button class="button" data-book="shiatsu-erst">Erstbehandlung anfragen ↗</button>' : '';
     const subtitle = o.subtitle ? `<p class="detail-subtitle"><em>${o.subtitle}</em></p>` : '';
-    const sections = (o.sections || []).map(section => `<section class="detail-section"><h3>${section.title}</h3>${section.paragraphs.map(p=>`<p>${p}</p>`).join('')}${section.quote ? `<blockquote class="detail-quote">${section.quote}</blockquote>` : ''}${section.image ? `<figure class="detail-section-photo"><img src="assets/${section.image}" width="553" height="836" alt="${section.imageAlt}" loading="lazy"><figcaption>${section.imageCaption}</figcaption></figure>` : ''}</section>`).join('');
+    const sections = (o.sections || []).map(section => `<section class="detail-section"><h3>${section.title}</h3>${section.paragraphs.map(p=>`<p>${p}</p>`).join('')}${section.quote ? `<blockquote class="detail-quote">${section.quote}</blockquote>` : ''}${section.image ? `<figure class="detail-section-photo${section.imageNatural ? ' detail-section-photo--natural' : ''}"><img src="assets/${section.image}" width="${section.imageWidth || 553}" height="${section.imageHeight || 836}" alt="${section.imageAlt}" loading="lazy"><figcaption>${section.imageCaption}</figcaption></figure>` : ''}</section>`).join('');
     const inquiry = o.inquirySubject ? `<p>Umfang und Rahmen der Begleitung besprechen wir persönlich.</p><a class="button" href="mailto:daniela@shiatsu-kellner.at?subject=${encodeURIComponent(o.inquirySubject)}">${o.inquiryLabel || 'Begleitung für dein Kind anfragen'} ↗</a>` : '';
     qs('#detail-content').innerHTML = `${media}<div class="detail-body"><p class="eyebrow">${o.eyebrow}</p><h2 id="detail-title">${o.title}</h2>${subtitle}${o.paragraphs.map(p=>`<p>${p}</p>`).join('')}${sections}${o.list.length ? `<ul>${o.list.map(p=>`<li>${p}</li>`).join('')}</ul>` : ''}${priceList}${inquiry || `<div class="detail-booking-actions">${firstTreatment}<button class="${key === 'shiatsu' ? 'text-link' : 'button'}" data-book="${key}">${key === 'shiatsu' ? 'Weitere Shiatsu-Sitzung anfragen' : key === 'kinder' ? 'Kinderbehandlung anfragen' : 'Persönlichen Termin anfragen'} ↗</button></div>`}<p class="medical-note">${o.medicalNote || 'Diese Angebote ersetzen keine ärztliche Diagnose, Psychotherapie oder medizinische Behandlung.'}</p></div>`;
     showDialog(detailDialog, trigger);

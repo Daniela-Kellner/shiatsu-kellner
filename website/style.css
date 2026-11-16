@@ -316,3 +316,26 @@ a.offer-image{display:block}
 .detail-media--mental{height:auto;object-fit:contain;filter:none}
 .service-page-media img[src$="mentaltraining-daniela-am-fluss.svg"]{max-height:none;height:auto;object-fit:contain}
 @media(max-width:640px){.offer-card:nth-child(2){grid-template-columns:1fr}}
+
+/* A separate, warm and spacious introduction to cacao rituals. */
+.cacao-section{display:grid;grid-template-columns:.85fr 1.15fr;gap:76px;align-items:center;padding-block:84px}
+.cacao-photo{margin:0;width:min(100%,380px)}
+.cacao-photo img{display:block;width:100%;height:auto;border-radius:150px 150px 5px 5px}
+.cacao-photo figcaption{font-size:12px;color:var(--muted);margin-top:14px;text-align:center}
+.cacao-copy h2{font-size:clamp(36px,4.5vw,62px);line-height:1.08;margin-bottom:24px}
+.cacao-copy>p:not(.eyebrow){font-size:15px;line-height:1.9;max-width:530px}
+.cacao-copy .cacao-intro{font-family:Cormorant,serif;font-size:28px!important;line-height:1.3!important;color:var(--sage-dark)}
+.cacao-copy .text-link{margin-top:16px;display:inline-flex}
+.cacao-copy .button{display:flex;width:fit-content;margin-top:25px}
+.detail-media-group--kakao{grid-template-columns:1fr 1fr;align-items:center;background:var(--cream);gap:12px}
+.detail-media-group--kakao .detail-media{height:auto;object-fit:contain;filter:none}
+.service-page-media--kakao{align-items:center;background:var(--cream)}
+.service-page-media--kakao img{height:auto;max-height:none;object-fit:contain;filter:none}
+@media(max-width:900px){.cacao-section{gap:35px}}
+@media(max-width:640px){.cacao-section{grid-template-columns:1fr;padding-block:48px;gap:30px}.cacao-photo{width:min(100%,320px);margin-inline:auto}.cacao-copy h2{font-size:40px}.cacao-copy>p:not(.eyebrow){font-size:14px}.cacao-copy .text-link{font-size:12px}.cacao-copy .button{font-size:12px;gap:18px}.detail-media-group--kakao{grid-template-columns:1fr}.service-page-media--kakao{flex-direction:column}.service-page-media--kakao:has(img+img) img{width:100%}}
+
+.detail-media--kakao{height:auto;max-height:400px;object-fit:contain;filter:none;background:var(--cream)}
+.service-page-media--kakao img{max-height:420px}
+.detail-section-photo--natural{width:min(100%,480px)}
+.detail-section-photo--natural img{filter:none}
+@media(max-width:640px){.detail-media--kakao{max-height:340px}.service-page-media--kakao img{max-height:340px}}
