@@ -198,7 +198,7 @@ const offerDetails = {
     medicalNote:'Die Begleitung ersetzt keine ärztliche Abklärung, Wundversorgung oder psychotherapeutische Behandlung.'
   },
   schwangerschaft: {
-    title:'Schwangerschaft, Geburt & Baby', eyebrow:'ACHTSAM BEGLEITET · VON ANFANG AN', image:'gallery/wm-20261116/schwangerschaft-bauch.svg', alt:'Daniela hält während ihrer Schwangerschaft liebevoll ihren Bauch',
+    title:'Schwangerschaft, Geburt & Baby', eyebrow:'ACHTSAM BEGLEITET · VON ANFANG AN', image:'gallery/wm-20261115/schwangerschaft-herzhaende.svg', alt:'Danielas Hände bilden ein Herz auf ihrem schwangeren Bauch',
     subtitle:'Getragen sein. Vertrauen finden. Gemeinsam ankommen.',
     paragraphs:[
       'Wenn neues Leben wächst, verändert sich vieles. Dein Körper, deine Gefühle, deine Beziehungen und der Blick auf das, was vor dir liegt. Vorfreude und Vertrauen dürfen dabei ebenso ihren Platz haben wie Fragen, Unsicherheit oder das Bedürfnis nach Ruhe.',
