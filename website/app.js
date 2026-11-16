@@ -136,6 +136,15 @@ const offerDetails = {
       'Jede Begegnung ist individuell und entsteht aus dem, was sich im jeweiligen Moment zeigen möchte. Inhalt und Tempo stimmen wir miteinander ab.',
       'Die Veränderung entsteht aus dir selbst. Ich halte den Raum, damit Klarheit, neue Perspektiven und Entwicklung möglich werden.'
     ],
+    sections:[
+      {title:'Glaubenssätze hinterfragen. Neue Perspektiven entdecken.', paragraphs:[
+        'Manchmal sind es vertraute Gedanken wie „Ich bin nicht gut genug“ oder „Ich muss alles alleine schaffen“, die uns begrenzen. Im Mentaltraining und in meiner Bewusstseinsarbeit begleite ich dich dabei, solche Glaubenssätze zu erkennen und zu hinterfragen.',
+        'Dabei fließen je nach Anliegen unterschiedliche Methoden ein:',
+        'The Work nach Byron Katie lädt dazu ein, belastende Überzeugungen mit vier Fragen und einem Wechsel der Blickrichtung zu untersuchen.',
+        'EFT – Emotional Freedom Techniques ist eine Klopftechnik, bei der ausgewählte Körperpunkte sanft beklopft werden, während wir uns deinen Gedanken und Gefühlen zuwenden.',
+        'Welche Zugänge wir nutzen, stimmen wir miteinander ab. Du kannst auch gezielt mit dem Wunsch nach EFT oder der Arbeit an Glaubenssätzen zu mir kommen. Im Mittelpunkt stehen immer du, dein Anliegen und dein eigenes Tempo.'
+      ]}
+    ],
     list:['Einzelbegleitung nach persönlicher Vereinbarung','Auch als längerfristiger gemeinsamer Prozess','Wähle einen Termin mit 60 oder 90 Minuten.'],
     prices:[['60 Minuten',89],['90 Minuten',119]]
   },
