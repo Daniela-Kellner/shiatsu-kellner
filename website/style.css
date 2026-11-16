@@ -339,3 +339,9 @@ a.offer-image{display:block}
 .detail-section-photo--natural{width:min(100%,480px)}
 .detail-section-photo--natural img{filter:none}
 @media(max-width:640px){.detail-media--kakao{max-height:340px}.service-page-media--kakao img{max-height:340px}}
+
+/* Show the whole pregnancy detail, including the discreet watermark. */
+.offer-card--pregnancy .pregnancy-image{height:auto;aspect-ratio:1024/923;max-width:400px;align-self:start}
+.offer-card--pregnancy .pregnancy-image img{object-fit:contain;object-position:center;transform:none}
+.detail-media--pregnancy{height:auto;max-height:400px;object-fit:contain;background:#efe9dd;filter:grayscale(1) sepia(.5) saturate(.8) contrast(.95)}
+@media(max-width:640px){.offer-card--pregnancy .pregnancy-image{height:auto;max-width:330px}.detail-media--pregnancy{height:auto;max-height:340px}}

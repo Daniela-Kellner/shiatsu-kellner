@@ -198,14 +198,14 @@ const offerDetails = {
     medicalNote:'Die Begleitung ersetzt keine ärztliche Abklärung, Wundversorgung oder psychotherapeutische Behandlung.'
   },
   schwangerschaft: {
-    title:'Schwangerschaft, Geburt & Baby', eyebrow:'ACHTSAM BEGLEITET · VON ANFANG AN', image:'schwangerschaft-portraet.jpeg', alt:'Eine schwangere Frau blickt liebevoll auf ihren Bauch', extraImage:'schwangerschaft-herzhaende.jpeg', extraAlt:'Zwei Hände formen ein Herz auf einem schwangeren Bauch',
+    title:'Schwangerschaft, Geburt & Baby', eyebrow:'ACHTSAM BEGLEITET · VON ANFANG AN', image:'gallery/wm-20261116/schwangerschaft-bauch.svg', alt:'Daniela hält während ihrer Schwangerschaft liebevoll ihren Bauch',
     subtitle:'Getragen sein. Vertrauen finden. Gemeinsam ankommen.',
     paragraphs:[
       'Wenn neues Leben wächst, verändert sich vieles. Dein Körper, deine Gefühle, deine Beziehungen und der Blick auf das, was vor dir liegt. Vorfreude und Vertrauen dürfen dabei ebenso ihren Platz haben wie Fragen, Unsicherheit oder das Bedürfnis nach Ruhe.',
       'Ich begleite dich in dieser besonderen Lebensphase mit achtsamer Körperarbeit, persönlicher Zuwendung und einem offenen Ohr für das, was dich bewegt – während der Schwangerschaft, rund um die Geburt und in der ersten Zeit mit deinem Baby.'
     ],
     sections:[
-      {title:'Während der Schwangerschaft', paragraphs:[
+      {title:'Während der Schwangerschaft', image:'gallery/wm-20261116/schwangerschaft-ruhe.svg', imageAlt:'Daniela liegt entspannt auf dem Sofa und legt die Hände auf ihren schwangeren Bauch', imageCaption:'Zeit für Ruhe. Zeit für dich und dein Baby.', imageWidth:1087, imageHeight:723, paragraphs:[
         'Ein Raum für dich und die Verbindung zu deinem werdenden Kind. Mit Shiatsu, Gesprächen und meinen ganzheitlichen Zugängen richte ich mich nach deinem Befinden und dem, was gerade Aufmerksamkeit braucht.',
         'Du darfst innehalten, deinen Körper bewusst wahrnehmen und deinen eigenen Bedürfnissen nachspüren. Berührung, Position und Tempo stimmen wir individuell auf dich ab.'
       ]},
@@ -262,7 +262,7 @@ for (const trigger of qsa('[data-offer]')) {
     event.preventDefault();
     const key = trigger.dataset.offer;
     const o = offerDetails[key];
-    const media = o.extraImage ? `<div class="detail-media-group${key === 'schwangerschaft' ? ' detail-media-group--pregnancy' : key === 'kakao' ? ' detail-media-group--kakao' : ''}"><img class="detail-media" src="assets/${o.image}" alt="${o.alt}"><img class="detail-media detail-media--scar" src="assets/${o.extraImage}" alt="${o.extraAlt}"></div>` : o.image ? `<img class="detail-media${key === 'shiatsu' ? ' detail-media--shiatsu' : key === 'mental' ? ' detail-media--mental' : key === 'kakao' ? ' detail-media--kakao' : (key === 'kinder' || key === 'kindermental') ? ' detail-media--children' : ''}" src="assets/${o.image}" alt="${o.alt}">` : `<div class="child-detail-art" aria-hidden="true"><svg viewBox="32 40 188 174" focusable="false"><image href="assets/daniela-logo.webp" width="1200" height="218"/></svg><span>Kleine Menschen. Großes Gefühl.</span></div>`;
+    const media = o.extraImage ? `<div class="detail-media-group${key === 'schwangerschaft' ? ' detail-media-group--pregnancy' : key === 'kakao' ? ' detail-media-group--kakao' : ''}"><img class="detail-media" src="assets/${o.image}" alt="${o.alt}"><img class="detail-media detail-media--scar" src="assets/${o.extraImage}" alt="${o.extraAlt}"></div>` : o.image ? `<img class="detail-media${key === 'shiatsu' ? ' detail-media--shiatsu' : key === 'mental' ? ' detail-media--mental' : key === 'kakao' ? ' detail-media--kakao' : key === 'schwangerschaft' ? ' detail-media--pregnancy' : (key === 'kinder' || key === 'kindermental') ? ' detail-media--children' : ''}" src="assets/${o.image}" alt="${o.alt}">` : `<div class="child-detail-art" aria-hidden="true"><svg viewBox="32 40 188 174" focusable="false"><image href="assets/daniela-logo.webp" width="1200" height="218"/></svg><span>Kleine Menschen. Großes Gefühl.</span></div>`;
     const priceList = o.prices.length ? `<dl class="treatment-prices treatment-prices--detail">${o.prices.map(([label,amount])=>`<div><dt>${label}</dt><dd>${amount} €</dd></div>`).join('')}</dl><p class="price-note">Standardpreise · Aktionen werden gesondert ausgewiesen.</p>` : '';
     const firstTreatment = key === 'shiatsu' ? '<button class="button" data-book="shiatsu-erst">Erstbehandlung anfragen ↗</button>' : '';
     const subtitle = o.subtitle ? `<p class="detail-subtitle"><em>${o.subtitle}</em></p>` : '';
