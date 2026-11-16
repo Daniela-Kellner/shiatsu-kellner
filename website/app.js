@@ -150,7 +150,7 @@ const offerDetails = {
   },
   kakao: {
     title:'Kakaozeremonien & Rituale', eyebrow:'BEWUSST GENIESSEN · VERBINDUNG ERLEBEN',
-    image:'kakao-zubereitung.svg', alt:'Kakao wird in einer goldfarbenen Schale mit einem Holzquirl zubereitet',
+    image:'gallery/wm-20261116/kakao-gewuerze.svg', alt:'Kakao, Kakaoraspeln und Sternanis auf einem rustikalen Holzbrett',
     subtitle:'Zeit für Verbindung. Mit dir selbst und miteinander.',
     paragraphs:[
       'Rituale laden uns ein, aus dem Alltag herauszutreten und einem Moment bewusst Bedeutung zu geben. Ich gestalte und begleite unterschiedliche Rituale – auch mit zeremoniellem Kakao als Teil meiner Bewusstseinsarbeit.'
