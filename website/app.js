@@ -128,7 +128,7 @@ const offerDetails = {
     prices:[['Erstbehandlung · 90 Minuten',119],['Shiatsu-Sitzung · 60 Minuten',89],['Shiatsu-Sitzung · 90 Minuten',119]]
   },
   mental: {
-    title:'Mentaltraining, Coaching & Bewusstseinsarbeit', eyebrow:'MEINE HERZENSARBEIT', image:'mentaltraining-perspektiven.webp', alt:'Ein lächelnder Mann mit dem Post-it „Monkey“ auf der Stirn im Gespräch mit zwei Frauen',
+    title:'Mentaltraining, Coaching & Bewusstseinsarbeit', eyebrow:'MEINE HERZENSARBEIT', image:'mentaltraining-daniela-am-fluss.svg', alt:'Daniela sitzt mit den Händen am Herzen auf einem steinigen Flussufer in der Natur',
     paragraphs:[
       'Jeder Mensch trägt bereits alles in sich, was er für seinen eigenen Weg braucht. Manchmal sind es jedoch Erfahrungen, Gedankenmuster oder innere Blockaden, die den Blick darauf verstellen. Ich sehe mich als Raumöffnerin und Knotenlöserin.',
       'Mit Achtsamkeit, Intuition und verschiedenen ganzheitlichen Methoden begleite ich dich dabei, wieder in Verbindung mit deiner inneren Weisheit, deinen Ressourcen und deinem authentischen So-Sein zu kommen.',

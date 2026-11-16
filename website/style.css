@@ -37,7 +37,7 @@ dialog{padding:0;border:1px solid #d7d7c9;box-shadow:0 35px 100px #15231933;back
 .header{height:112px}.header .brand{width:300px}.desktop-nav{gap:24px}.header .brand>span{font-size:8px;letter-spacing:1.6px;margin-top:9px}.mobile-nav{top:112px}
 .hero-person img{object-position:50% 38%}
 .offer-card:first-child .offer-image img{object-position:57% 62%;filter:saturate(.86)}
-.offer-card:nth-child(2) .offer-image img{object-position:54% 37%;transform-origin:54% 37%;transform:scale(1.15);filter:none}
+.offer-card:nth-child(2) .offer-image img{object-position:25% 50%;transform-origin:25% 50%;transform:scale(1);filter:none}
 .portrait-frame img{object-position:50% 40%;filter:none}
 .about{gap:95px}.about-moment{margin:23px 0 18px}.about-moment img{width:100%;height:174px;object-fit:cover;object-position:50% 47%;border-radius:4px}.about-moment figcaption{font-size:11px;line-height:1.6;color:var(--muted);margin-top:8px}
 .about-credentials{margin-top:19px;margin-bottom:20px}.oeds-qualification{display:flex;align-items:center;gap:20px;border-top:1px solid var(--line);padding:18px 0 17px;margin:0 0 15px}.oeds-qualification>img{width:154px;height:auto;object-fit:contain;flex-shrink:0}.oeds-qualification>span{font-size:12px;line-height:1.7;color:var(--muted)}.oeds-qualification>span>span{margin-left:7px;color:var(--gold)}.oeds-qualification:hover>span{color:var(--sage)}
@@ -109,7 +109,7 @@ dialog{padding:0;border:1px solid #d7d7c9;box-shadow:0 35px 100px #15231933;back
 @media(max-width:640px){.detail-media--mental{height:240px}}
 
 /* Bildausschnitt und proportionale Anpassungen aus den Browserkommentaren. */
-.offer-card:nth-child(2) .offer-image:hover img{transform:scale(1.196)}
+.offer-card:nth-child(2) .offer-image:hover img{transform:scale(1.04)}
 .portrait-note{transform:rotate(4deg) scale(.8);transform-origin:bottom right}
 .breathing-button{width:294px;height:294px}
 .breath-core{width:204px;height:204px}
@@ -308,3 +308,11 @@ a.offer-image{display:block}
 .detail-section-photo{width:min(100%,360px);margin:26px auto 30px}
 .detail-section-photo img{width:100%;height:auto;display:block;border-radius:5px;filter:grayscale(1) sepia(.5) saturate(.8) contrast(.95)}
 .detail-section-photo figcaption{font-size:12px;line-height:1.7;color:var(--muted);margin-top:12px;text-align:center}
+
+/* Preserve the complete personal river photograph and its watermark. */
+.offer-card:nth-child(2) .offer-image{height:auto;aspect-ratio:4/3;align-self:start}
+.offer-card:nth-child(2) .offer-image img{object-fit:contain;transform:none}
+.offer-card:nth-child(2) .offer-image:hover img{transform:none}
+.detail-media--mental{height:auto;object-fit:contain;filter:none}
+.service-page-media img[src$="mentaltraining-daniela-am-fluss.svg"]{max-height:none;height:auto;object-fit:contain}
+@media(max-width:640px){.offer-card:nth-child(2){grid-template-columns:1fr}}
