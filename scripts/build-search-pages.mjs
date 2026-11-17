@@ -71,6 +71,6 @@ index = index.replace(/<button\b([^>]*\bdata-offer="([^"]+)"[^>]*)>([\s\S]*?)<\/
   return `<a${attributes} href="angebote/${pages[key][0]}/">${content}</a>`;
 });
 await writeFile(path.join(root, 'index.html'), index);
-const urls = [base, ...Object.values(pages).map(([slug]) => base + 'angebote/' + slug + '/')];
+const urls = [base, base + 'veranstaltungen/kakaokreis-dezember-2026/', ...Object.values(pages).map(([slug]) => base + 'angebote/' + slug + '/')];
 await writeFile(path.join(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(url => '  <url><loc>' + url + '</loc></url>').join('\n')}\n</urlset>\n`);
 console.log(`Generated ${Object.keys(pages).length} offer pages, practice data and sitemap.`);
