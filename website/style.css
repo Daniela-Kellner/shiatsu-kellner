@@ -345,3 +345,22 @@ a.offer-image{display:block}
 .offer-card--pregnancy .pregnancy-image img{object-fit:contain;object-position:center;transform:none}
 .detail-media--pregnancy{height:auto;max-height:400px;object-fit:contain;background:#efe9dd;filter:grayscale(1) sepia(.5) saturate(.8) contrast(.95)}
 @media(max-width:640px){.offer-card--pregnancy .pregnancy-image{height:auto;max-width:330px}.detail-media--pregnancy{height:auto;max-height:340px}}
+
+/* A consistent overview: three main offers, followed by two life-stage offers. */
+.offers .offer-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:38px 28px;align-items:stretch}
+.offers .offer-grid>.offer-card{grid-column:span 2;display:flex;flex-direction:column;align-items:stretch;gap:0;padding:0;margin:0;background:transparent;border-radius:0}
+.offers .offer-grid>.offer-card:nth-last-child(-n+2){grid-column:span 3}
+.offers .offer-card>.offer-image{display:block;width:100%;max-width:none;height:260px;aspect-ratio:auto;align-self:auto;border-radius:5px;background:#efe9dd;margin:0}
+.offers .offer-card>.offer-image img{width:100%;height:100%;object-fit:contain;object-position:center;transform:none}
+.offers .offer-card>.offer-image:hover img{transform:none}
+.offers .offer-content{display:flex;flex:1;flex-direction:column;align-items:stretch;padding:22px 0 0}
+.offers .offer-content h3{font-size:30px;line-height:1.12;min-height:68px;color:var(--ink)}
+.offers .offer-content>p:not(.eyebrow):not(.price-note){font-size:14px;line-height:1.85;min-height:78px;max-width:none;margin:12px 0 16px}
+.offers .offer-content>.eyebrow{font-size:10px;margin:0 0 12px;min-height:0}
+.offers .offer-content .treatment-prices{width:100%;margin:0 0 22px;font-size:13px}
+.offers .offer-content .text-link{font-size:13px;line-height:1.7;gap:12px;margin-top:0;align-self:flex-start}
+.offers .offer-card:nth-child(-n+3) .offer-content>.text-link:last-child{margin-top:auto}
+.offers .offer-content .text-link+.text-link{margin-top:12px}
+.river-flyer-download{display:flex;width:fit-content;margin-top:20px;font-size:13px;color:var(--sage-panel-ink)}
+@media(max-width:900px){.offers .offer-grid{gap:34px 20px}.offers .offer-content h3{font-size:27px}.offers .offer-card>.offer-image{height:230px}.offers .offer-content>p:not(.eyebrow):not(.price-note){font-size:13px}}
+@media(max-width:700px){.offers .offer-grid{grid-template-columns:1fr;gap:42px}.offers .offer-grid>.offer-card,.offers .offer-grid>.offer-card:nth-last-child(-n+2){grid-column:auto}.offers .offer-card>.offer-image{height:270px}.offers .offer-content h3{font-size:33px;min-height:0}.offers .offer-content>p:not(.eyebrow):not(.price-note){font-size:14px;min-height:0;margin:14px 0 18px}.offers .offer-content .treatment-prices{font-size:14px}.offers .offer-content .text-link{font-size:13px}}
