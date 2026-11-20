@@ -172,7 +172,7 @@ const offerDetails = {
     medicalNote:'Die Kakaozeremonie ist ein Angebot zur bewussten Begegnung und Selbstwahrnehmung.'
   },
   moxa: {
-    title:'Moxa & Narbenarbeit', eyebrow:'WÄRME & ACHTSAME NARBENARBEIT', image:'moxa.webp', alt:'Eine Moxa-Anwendung im Bereich einer Hand', extraImage:'narbenarbeit-bauch.webp', extraAlt:'Hände in Herzform über Narben am Bauch',
+    title:'Moxa & Narbenarbeit', eyebrow:'WÄRME & ACHTSAME NARBENARBEIT', image:'gallery/wm-20261120/narbenarbeit-bauch.svg', alt:'Sichtbare Bauchnarbe mit Händen in Herzform', extraImage:'gallery/wm-20261120/moxa.svg', extraAlt:'Eine Moxa-Wärmeanwendung im Bereich einer Hand',
     subtitle:'Wärme spüren. Der eigenen Geschichte Raum geben.',
     paragraphs:[
       'Manche Spuren auf unserem Körper erzählen von besonderen Lebensereignissen. Eine Operation, eine Verletzung oder eine Geburt können nicht nur sichtbare Narben hinterlassen, sondern auch mit Empfindungen, Erinnerungen und Gefühlen verbunden sein.',
@@ -225,7 +225,7 @@ const offerDetails = {
     medicalNote:'Meine Begleitung ergänzt die Betreuung durch Hebamme und Ärztin oder Arzt. Sie ersetzt keine medizinische oder geburtshilfliche Versorgung.'
   },
   kindermental: {
-    title:'Kinder & Jugendliche', eyebrow:'MENTALTRAINING & GANZHEITLICHE BEGLEITUNG', image:'kinder-teddy-20261029.webp', alt:'Ein heller Stoffteddybär neben zwei grünen Keimlingen in warmem Licht',
+    title:'Kinder & Jugendliche', eyebrow:'MENTALTRAINING & GANZHEITLICHE BEGLEITUNG', image:'', alt:'',
     subtitle:'Mit Vertrauen wachsen. Sich selbst treu bleiben.',
     paragraphs:[
       'Kinder begegnen der Welt oft mit einer besonderen Offenheit, Ehrlichkeit und Feinfühligkeit. Diese Qualitäten zu bewahren und sie darin zu stärken, ihrer Wahrnehmung zu vertrauen und ihren eigenen Wert zu spüren, liegt mir besonders am Herzen.',
@@ -250,7 +250,7 @@ const offerDetails = {
     medicalNote:'Diese Begleitung ersetzt keine ärztliche, psychologische oder psychotherapeutische Abklärung oder Behandlung.'
   },
   kinder: {
-    title:'Kinderbehandlung', eyebrow:'ACHTSAME KÖRPERARBEIT · BIS 12 JAHRE', image:'kinder-teddy-20261029.webp', alt:'Illustration: Ein heller Stoffteddybär neben zwei grünen Keimlingen in warmem Licht',
+    title:'Kinderbehandlung', eyebrow:'ACHTSAME KÖRPERARBEIT · BIS 12 JAHRE', image:'', alt:'',
     paragraphs:['Auch die Kleinen dürfen sich Zeit zum Ankommen nehmen. Ich begleite Kinder bis 12 Jahre mit achtsamer, sanfter Körperarbeit.', 'Wir richten uns nach dem Alter, dem Empfinden und dem Tempo deines Kindes. Was gerade passend ist, besprechen wir gemeinsam.'],
     list:['Für Kinder bis 12 Jahre','Achtsame Berührung und Raum zum Wohlfühlen','40 Minuten Zeit für dein Kind'],
     prices:[['40 Minuten · bis 12 Jahre',55]]
@@ -262,7 +262,7 @@ for (const trigger of qsa('[data-offer]')) {
     event.preventDefault();
     const key = trigger.dataset.offer;
     const o = offerDetails[key];
-    const media = o.extraImage ? `<div class="detail-media-group${key === 'schwangerschaft' ? ' detail-media-group--pregnancy' : key === 'kakao' ? ' detail-media-group--kakao' : ''}"><img class="detail-media" src="assets/${o.image}" alt="${o.alt}"><img class="detail-media detail-media--scar" src="assets/${o.extraImage}" alt="${o.extraAlt}"></div>` : o.image ? `<img class="detail-media${key === 'shiatsu' ? ' detail-media--shiatsu' : key === 'mental' ? ' detail-media--mental' : key === 'kakao' ? ' detail-media--kakao' : key === 'schwangerschaft' ? ' detail-media--pregnancy' : (key === 'kinder' || key === 'kindermental') ? ' detail-media--children' : ''}" src="assets/${o.image}" alt="${o.alt}">` : `<div class="child-detail-art" aria-hidden="true"><svg viewBox="32 40 188 174" focusable="false"><image href="assets/daniela-logo.webp" width="1200" height="218"/></svg><span>Kleine Menschen. Großes Gefühl.</span></div>`;
+    const media = o.extraImage ? `<div class="detail-media-group${key === 'schwangerschaft' ? ' detail-media-group--pregnancy' : key === 'kakao' ? ' detail-media-group--kakao' : key === 'moxa' ? ' detail-media-group--moxa' : ''}"><img class="detail-media" src="assets/${o.image}" alt="${o.alt}"><img class="detail-media detail-media--scar" src="assets/${o.extraImage}" alt="${o.extraAlt}"></div>` : o.image ? `<img class="detail-media${key === 'shiatsu' ? ' detail-media--shiatsu' : key === 'mental' ? ' detail-media--mental' : key === 'kakao' ? ' detail-media--kakao' : key === 'schwangerschaft' ? ' detail-media--pregnancy' : (key === 'kinder' || key === 'kindermental') ? ' detail-media--children' : ''}" src="assets/${o.image}" alt="${o.alt}">` : '';
     const priceList = o.prices.length ? `<dl class="treatment-prices treatment-prices--detail">${o.prices.map(([label,amount])=>`<div><dt>${label}</dt><dd>${amount} €</dd></div>`).join('')}</dl><p class="price-note">Standardpreise · Aktionen werden gesondert ausgewiesen.</p>` : '';
     const firstTreatment = key === 'shiatsu' ? '<button class="button" data-book="shiatsu-erst">Erstbehandlung anfragen ↗</button>' : '';
     const subtitle = o.subtitle ? `<p class="detail-subtitle"><em>${o.subtitle}</em></p>` : '';
