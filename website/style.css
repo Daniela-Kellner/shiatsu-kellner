@@ -836,3 +836,10 @@ dialog::backdrop{background:#1d2a2266;backdrop-filter:blur(8px);-webkit-backdrop
 @media(max-width:1000px){
   .hero{overflow-x:clip}
 }
+
+/* Auch den Dokument-Viewport gegen seitliches Wegschieben auf Mobilgeräten sichern. */
+html{max-width:100%;overflow-x:hidden;overscroll-behavior-x:none}
+body{width:100%;min-width:0;max-width:100%;overscroll-behavior-x:none}
+@media(max-width:1000px),(hover:none),(pointer:coarse){
+  html,body{touch-action:pan-y pinch-zoom}
+}
