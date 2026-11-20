@@ -23,15 +23,17 @@ function showDialog(dialog, opener) {
 
 function syncService() {
   const service = serviceSelect.value;
-  const fixedDurations = {'shiatsu-erst':'90', moxa:'90', kinder:'40', paar:'120', flusswaerts:'90'};
+  const fixedDurations = {'shiatsu-erst':'90', moxa:'90', kinder:'40', paar:'120', kennenlernen:'90'};
   const fixed = fixedDurations[service];
   const allowed = fixed ? [fixed] : service === 'workshop' ? [''] : ['60', '90'];
   durationSelect.innerHTML = allowed.map(minutes => `<option value="${minutes}">${minutes ? minutes + ' Minuten' : 'Nach Vereinbarung'}</option>`).join('');
   durationSelect.value = allowed[0];
   durationSelect.disabled = Boolean(fixed) || service === 'workshop';
-  if (service === 'hausbesuch') qs('#booking-location').selectedIndex = 2;
-  if (service === 'flusswaerts') qs('#booking-location').selectedIndex = 0;
-  if (service === 'workshop') qs('#booking-location').selectedIndex = 3;
+  const locationSelect = qs('#booking-location');
+  if (service === 'hausbesuch') locationSelect.value = 'hausbesuch';
+  if (service === 'kennenlernen') locationSelect.value = 'seminarhaus';
+  locationSelect.disabled = service === 'kennenlernen';
+  if (service === 'workshop') locationSelect.value = 'vereinbarung';
   updateBookingPrice();
 }
 
@@ -40,8 +42,8 @@ function updateBookingPrice() {
   const minutes = durationSelect.value;
   const fixedPrices = {'shiatsu-erst':119, moxa:119, kinder:55, paar:220};
   let text;
-  if (service === 'flusswaerts') {
-    text = localToday <= '2026-11-30' ? 'FLUSSwärts-Aktionspreis: 297 € · 3 × 90 Minuten (statt 357 €)' : 'FLUSSwärts: Aktuelles Angebot und Preis auf Anfrage.';
+  if (service === 'kennenlernen') {
+    text = 'Kennenlernblock für neue Klientinnen und Klienten: 297 € · 3 × 90 Minuten (statt 357 €) · Seminarhaus am Eckhof, Mellach';
   } else if (service === 'workshop') {
     text = 'Dauer und Preis richten sich nach dem jeweiligen Workshop.';
   } else if (service === 'hausbesuch') {
@@ -172,7 +174,7 @@ const offerDetails = {
     medicalNote:'Die Kakaozeremonie ist ein Angebot zur bewussten Begegnung und Selbstwahrnehmung.'
   },
   moxa: {
-    title:'Moxa & Narbenarbeit', eyebrow:'WÄRME & ACHTSAME NARBENARBEIT', image:'gallery/wm-20261120/narbenarbeit-bauch.svg', alt:'Sichtbare Bauchnarbe mit Händen in Herzform', extraImage:'gallery/wm-20261120/moxa.svg', extraAlt:'Eine Moxa-Wärmeanwendung im Bereich einer Hand',
+    title:'Moxa & Narbenarbeit', eyebrow:'WÄRME & ACHTSAME NARBENARBEIT', image:'gallery/wm-20261120/narben-herzhaende.svg', alt:'Hände formen ein Herz über dem Unterbauch', extraImage:'gallery/wm-20261120/moxa.svg', extraAlt:'Eine Moxa-Wärmeanwendung im Bereich einer Hand', imageCredit:`<p class="image-credit">Symbolbild · <a href="https://www.magnific.com/free-photo/close-up-hands-making-heart-shape_12977278.htm" target="_blank" rel="noopener">Bild von magnific auf Magnific</a></p>`,
     subtitle:'Wärme spüren. Der eigenen Geschichte Raum geben.',
     paragraphs:[
       'Manche Spuren auf unserem Körper erzählen von besonderen Lebensereignissen. Eine Operation, eine Verletzung oder eine Geburt können nicht nur sichtbare Narben hinterlassen, sondern auch mit Empfindungen, Erinnerungen und Gefühlen verbunden sein.',
@@ -268,7 +270,7 @@ for (const trigger of qsa('[data-offer]')) {
     const subtitle = o.subtitle ? `<p class="detail-subtitle"><em>${o.subtitle}</em></p>` : '';
     const sections = (o.sections || []).map(section => `<section class="detail-section"><h3>${section.title}</h3>${section.paragraphs.map(p=>`<p>${p}</p>`).join('')}${section.quote ? `<blockquote class="detail-quote">${section.quote}</blockquote>` : ''}${section.image ? `<figure class="detail-section-photo${section.imageNatural ? ' detail-section-photo--natural' : ''}"><img src="assets/${section.image}" width="${section.imageWidth || 553}" height="${section.imageHeight || 836}" alt="${section.imageAlt}" loading="lazy"><figcaption>${section.imageCaption}</figcaption></figure>` : ''}</section>`).join('');
     const inquiry = o.inquirySubject ? `<p>Umfang und Rahmen der Begleitung besprechen wir persönlich.</p><a class="button" href="mailto:daniela@shiatsu-kellner.at?subject=${encodeURIComponent(o.inquirySubject)}">${o.inquiryLabel || 'Begleitung für dein Kind anfragen'} ↗</a>` : '';
-    qs('#detail-content').innerHTML = `${media}<div class="detail-body"><p class="eyebrow">${o.eyebrow}</p><h2 id="detail-title">${o.title}</h2>${subtitle}${o.paragraphs.map(p=>`<p>${p}</p>`).join('')}${sections}${o.list.length ? `<ul>${o.list.map(p=>`<li>${p}</li>`).join('')}</ul>` : ''}${priceList}${inquiry || `<div class="detail-booking-actions">${firstTreatment}<button class="${key === 'shiatsu' ? 'text-link' : 'button'}" data-book="${key}">${key === 'shiatsu' ? 'Weitere Shiatsu-Sitzung anfragen' : key === 'kinder' ? 'Kinderbehandlung anfragen' : 'Persönlichen Termin anfragen'} ↗</button></div>`}<p class="medical-note">${o.medicalNote || 'Diese Angebote ersetzen keine ärztliche Diagnose, Psychotherapie oder medizinische Behandlung.'}</p></div>`;
+    qs('#detail-content').innerHTML = `${media}${o.imageCredit || ''}<div class="detail-body"><p class="eyebrow">${o.eyebrow}</p><h2 id="detail-title">${o.title}</h2>${subtitle}${o.paragraphs.map(p=>`<p>${p}</p>`).join('')}${sections}${o.list.length ? `<ul>${o.list.map(p=>`<li>${p}</li>`).join('')}</ul>` : ''}${priceList}${inquiry || `<div class="detail-booking-actions">${firstTreatment}<button class="${key === 'shiatsu' ? 'text-link' : 'button'}" data-book="${key}">${key === 'shiatsu' ? 'Weitere Shiatsu-Sitzung anfragen' : key === 'kinder' ? 'Kinderbehandlung anfragen' : 'Persönlichen Termin anfragen'} ↗</button></div>`}<p class="medical-note">${o.medicalNote || 'Diese Angebote ersetzen keine ärztliche Diagnose, Psychotherapie oder medizinische Behandlung.'}</p></div>`;
     showDialog(detailDialog, trigger);
   });
 }
@@ -354,8 +356,8 @@ qs('#booking-form').addEventListener('submit', e => {
   }
   dateInput.setCustomValidity('');
   const dateLabel = date ? new Date(date + 'T12:00:00').toLocaleDateString('de-AT',{weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'}) : 'Besprechen wir persönlich';
-  const duration = serviceSelect.value === 'workshop' ? 'Nicht zutreffend – Workshop-Information' : serviceSelect.value === 'flusswaerts' ? '3 Termine à 90 Minuten' : durationSelect.value + ' Minuten';
-  preparedText = `Liebe Daniela,\n\nich interessiere mich für folgendes Angebot:\n${service}\n\nDauer: ${duration}\n${qs('#booking-price').textContent}\nWunschort: ${value('ort')}\nWunschdatum: ${dateLabel}\nWunschzeit: ${value('zeit') || 'Nach Vereinbarung'}\n\nMeine Kontaktdaten:\n${value('vorname')} ${value('nachname')}\nE-Mail: ${value('email')}\nTelefon: ${value('telefon')}\n\nRechnungsadresse:\n${value('strasse')}\n${value('plz')} ${value('wohnort')}\n\n${value('nachricht') ? 'Meine Nachricht:\n' + value('nachricht') + '\n\n' : ''}Mir ist bewusst, dass dies eine Anfrage ist und der Termin erst nach deiner persönlichen Bestätigung vereinbart ist. Du darfst meine angegebenen Daten zur Bearbeitung dieser Anfrage verwenden.\n\nLiebe Grüße\n${value('vorname')}`;
+  const duration = serviceSelect.value === 'workshop' ? 'Nicht zutreffend – Workshop-Information' : serviceSelect.value === 'kennenlernen' ? '3 Termine à 90 Minuten' : durationSelect.value + ' Minuten';
+  preparedText = `Liebe Daniela,\n\nich interessiere mich für folgendes Angebot:\n${service}\n\nDauer: ${duration}\n${qs('#booking-price').textContent}\nWunschort: ${qs('#booking-location').selectedOptions[0].textContent}\nWunschdatum: ${dateLabel}\nWunschzeit: ${value('zeit') || 'Nach Vereinbarung'}\n\nMeine Kontaktdaten:\n${value('vorname')} ${value('nachname')}\nE-Mail: ${value('email')}\nTelefon: ${value('telefon')}\n\nRechnungsadresse:\n${value('strasse')}\n${value('plz')} ${value('wohnort')}\n\n${value('nachricht') ? 'Meine Nachricht:\n' + value('nachricht') + '\n\n' : ''}Mir ist bewusst, dass dies eine Anfrage ist und der Termin erst nach deiner persönlichen Bestätigung vereinbart ist. Du darfst meine angegebenen Daten zur Bearbeitung dieser Anfrage verwenden.\n\nLiebe Grüße\n${value('vorname')}`;
   const href = `mailto:daniela@shiatsu-kellner.at?subject=${encodeURIComponent('Terminanfrage · ' + service)}&body=${encodeURIComponent(preparedText)}`;
   qs('#mail-link').href = href;
   qs('#prepared-request').value = preparedText;
@@ -375,11 +377,6 @@ qs('#copy-request').addEventListener('click', async () => {
   }
 });
 
-if (localToday > '2026-11-30') {
-  qs('#special-offer').innerHTML = '<span class="small-label">DEIN PERSÖNLICHER PROZESS</span><div><strong>Zeit für dich am Wasser</strong></div><p>Frag mich nach dem aktuellen Kennenlernangebot.</p>';
-  const option = qs('#booking-service option[value="flusswaerts"]');
-  option.textContent = 'FLUSSwärts · aktuelles Angebot anfragen';
-}
 
 const breathButton = qs('#breathing-button');
 const soundToggle = qs('#breath-sound-toggle');
