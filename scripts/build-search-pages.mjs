@@ -53,7 +53,7 @@ ${offer.list.length ? `<ul>${offer.list.map(item => `<li>${escape(item)}</li>`).
 <p class="service-page-location">Persönliche Begleitung in Enzelsdorf bei Graz: im Hausboot &amp; an der Seebühne, Murbergstraße 194, sowie im Seminarhaus am Eckhof, Murbergstraße 155, 8072 Enzelsdorf. Termine nach Vereinbarung.</p>
 <a class="button" href="mailto:daniela@shiatsu-kellner.at?subject=${encodeURIComponent(offer.inquirySubject || 'Anfrage: ' + offer.title)}">${escape(offer.inquiryLabel || 'Persönlich anfragen')} ↗</a>
 <p class="medical-note">${escape(offer.medicalNote || 'Diese Angebote ersetzen keine ärztliche Diagnose, Psychotherapie oder medizinische Behandlung.')}</p><a class="text-link" href="../../#angebot">Zurück zur Angebotsübersicht</a></article></main>
-<footer class="service-page-footer"><span>Daniela Kellner · Shiatsu &amp; Bewusstsein</span><a href="../../#kontakt">Kontakt</a></footer></body></html>\n`;
+<footer class="service-page-footer"><span>Daniela Kellner · Shiatsu &amp; Bewusstsein</span><a href="../../#kontakt">Kontakt</a><a href="../../impressum/">Impressum</a><a href="../../agb/">AGB</a></footer></body></html>\n`;
   const directory = path.join(root, 'angebote', slug);
   await mkdir(directory, { recursive: true });
   await writeFile(path.join(directory, 'index.html'), html);
