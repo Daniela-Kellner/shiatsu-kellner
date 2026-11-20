@@ -435,7 +435,7 @@ document.addEventListener('visibilitychange', () => {
 });
 window.addEventListener('pagehide', () => stopBreathing(false, true));
 
-if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+if ('IntersectionObserver' in window && window.matchMedia('(min-width: 1001px) and (hover: hover) and (pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.documentElement.classList.add('js-ready');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}});

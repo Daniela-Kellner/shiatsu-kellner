@@ -824,3 +824,15 @@ dialog::backdrop{background:#1d2a2266;backdrop-filter:blur(8px);-webkit-backdrop
 .image-credit a{text-decoration:underline;text-underline-offset:3px}
 #detail-content>.image-credit{padding:12px 28px 0;margin:0}
 .offer-image--scar img{object-fit:cover;object-position:center}
+
+/* Ruhige Texte auf kleinen Bildschirmen und Touch-Geräten. Keine Bewegung beim Scrollen. */
+@media(max-width:1000px),(hover:none),(pointer:coarse){
+  html{scroll-behavior:auto}
+  .js-ready .reveal,.js-ready .reveal.visible{opacity:1;transform:none;transition:none;transition-delay:0s}
+  .offer-card,.event-card,.voice-grid figure{transition:none}
+  .offer-card:hover,.js-ready .offer-card.reveal.visible:hover,.event-card:hover,.voice-grid figure:hover{transform:none}
+  .offer-image:hover img,.pair-images figure:hover img,.event-card:hover .event-card-img img{transform:none}
+}
+@media(max-width:1000px){
+  .hero{overflow-x:clip}
+}
