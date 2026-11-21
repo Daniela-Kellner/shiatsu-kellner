@@ -59,7 +59,7 @@ ${offer.list.length ? `<ul>${offer.list.map(item => `<li>${escape(item)}</li>`).
   await writeFile(path.join(directory, 'index.html'), html);
 }
 // The fixed pair ritual and the introductory block are already readable on the homepage.
-for (const [name, anchor] of [['Paar-Ritual', 'paarritual'], ['Kennenlernblock', 'kennenlernen']]) {
+for (const [name, anchor] of [['Paar-Ritual', 'paarritual'], ['Kennenlernblock', 'kennenlernen'], ['Atem, Bewegung & Körperbewusstsein', 'atem-bewegung']]) {
   provider.hasOfferCatalog.itemListElement.push({ '@type': 'Offer', itemOffered: { '@type': 'Service', name, url: base + '#' + anchor, provider: { '@id': provider['@id'] } } });
 }
 const branch = { '@type': 'LocalBusiness', '@id': base + '#eckhof', name: 'Daniela Kellner · Begleitung im Seminarhaus am Eckhof', parentOrganization: { '@id': provider['@id'] }, url: base + '#kontakt', telephone: provider.telephone, address: { '@type': 'PostalAddress', streetAddress: 'Murbergstraße 155', postalCode: '8072', addressLocality: 'Fernitz-Mellach', addressRegion: 'Steiermark', addressCountry: 'AT' } };

@@ -125,3 +125,16 @@ html{scroll-behavior:auto}
 .cacao-partner strong{color:var(--ink);white-space:nowrap}
 .cacao-partner-links{display:flex;flex-wrap:wrap;gap:12px 24px;margin:18px 0}
 .cacao-partner-links .text-link{font-size:15px}
+
+.breath-offer{display:grid;grid-template-columns:minmax(0,.65fr) minmax(0,1fr);gap:clamp(32px,6vw,72px);align-items:start;margin:52px 0 40px;padding-bottom:40px;border-bottom:1px solid var(--line)}
+.breath-offer figure{margin:0}.breath-offer-photo{max-width:310px}
+.breath-offer img{display:block;width:100%;height:auto;border-radius:5px}
+.breath-offer figcaption{font:italic 17px/1.5 var(--serif);color:var(--muted);margin-top:12px}
+.breath-offer h3{font:400 clamp(32px,3.6vw,44px)/1.15 var(--serif);margin-bottom:20px}
+.breath-offer-copy>p:not(.eyebrow),.breath-offer-details p{font-size:16px;line-height:1.85;color:var(--muted);margin-bottom:18px}
+.breath-offer-copy .breath-offer-lead{font:400 25px/1.4 var(--serif)!important;color:var(--ink-soft)!important}
+.breath-offer-details{border-block:1px solid var(--line-soft);margin:24px 0}
+.breath-offer-details summary{cursor:pointer;padding:16px 0;font-size:16px;color:var(--ink)}
+.breath-offer-details>div{padding-top:8px;padding-bottom:24px}
+.breath-offer-landscape{max-width:300px;margin-top:24px!important}
+@media(max-width:700px){.breath-offer{grid-template-columns:1fr;gap:28px}.breath-offer-photo{max-width:280px}.breath-offer h3{font-size:34px}}
