@@ -115,3 +115,13 @@ body{background:var(--paper);font-size:17px}
 html{scroll-behavior:auto}
 
 .about-moment--personal img{display:block;width:min(100%,320px);height:auto;aspect-ratio:auto;object-fit:contain;border-radius:5px}
+
+.cacao-partner{margin-top:36px;padding-top:26px;border-top:1px solid var(--line);max-width:540px}
+.cacao-partner-label{font-size:14px;color:var(--muted);margin-bottom:16px}
+.cacao-partner-logo{display:block;width:126px;height:84px;object-fit:contain;background:#343d31;border-radius:4px;padding:10px;margin-bottom:18px}
+.cacao-partner h3{font:400 29px/1.2 var(--serif);margin-bottom:14px;color:var(--ink)}
+.cacao-partner p{font-size:16px;line-height:1.8;color:var(--muted);margin-bottom:14px}
+.cacao-partner .cacao-partner-label,.cacao-partner .cacao-partner-disclosure{font-size:14px;line-height:1.65}
+.cacao-partner strong{color:var(--ink);white-space:nowrap}
+.cacao-partner-links{display:flex;flex-wrap:wrap;gap:12px 24px;margin:18px 0}
+.cacao-partner-links .text-link{font-size:15px}
