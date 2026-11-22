@@ -318,7 +318,7 @@ qs('#event-panel').addEventListener('click', e => {
 renderEvents('workshops');
 
 qs('[data-flyer]').addEventListener('click', e => {
-  qs('#detail-content').innerHTML = '<img class="flyer-image" width="1055" height="1491" src="assets/paarritual-flyer-20261027.webp" alt="Paarritual – Raum für eure Liebe. Dauer ca. 2 Stunden. 220 Euro für euch beide."><div class="flyer-body"><h2 id="detail-title">Euer Paar-Ritual</h2><p>120 Minuten · 220 € für euch beide</p><button class="button" data-book="paar">Euren Wunschtermin anfragen ↗</button></div>';
+  qs('#detail-content').innerHTML = '<img class="flyer-image" width="1080" height="1528" src="assets/paarritual-flyer-20261122.jpg" alt="Paarritual – Raum für eure Liebe. Dauer ca. 2 Stunden. 220 Euro für euch beide."><div class="flyer-body"><h2 id="detail-title">Euer Paar-Ritual</h2><p>120 Minuten · 220 € für euch beide</p><button class="button" data-book="paar">Euren Wunschtermin anfragen ↗</button></div>';
   showDialog(detailDialog, e.currentTarget);
 });
 
