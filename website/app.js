@@ -134,7 +134,7 @@ const offerDetails = {
     paragraphs:[
       'Jeder Mensch trägt bereits alles in sich, was er für seinen eigenen Weg braucht. Manchmal sind es jedoch Erfahrungen, Gedankenmuster oder innere Blockaden, die den Blick darauf verstellen. Ich sehe mich als Raumöffnerin und Knotenlöserin.',
       'Mit Achtsamkeit, Intuition und verschiedenen ganzheitlichen Methoden begleite ich dich dabei, wieder in Verbindung mit deiner inneren Weisheit, deinen Ressourcen und deinem authentischen So-Sein zu kommen.',
-      'Als diplomierte Mentaltrainerin und Energy Coach arbeite ich je nach Anliegen auf unterschiedlichen Ebenen: mit Mentaltraining und Coaching sowie transformativer Bewusstseinsarbeit und Quantenarbeit. Auch Kinder und Jugendliche finden bei mir eine liebevolle Begleitung.',
+      'Als Dipl. Mentaltrainerin und Dipl. Energy Coach arbeite ich je nach Anliegen auf unterschiedlichen Ebenen: mit Mentaltraining und Coaching sowie transformativer Bewusstseinsarbeit und Quantenarbeit. Auch Kinder und Jugendliche finden bei mir eine liebevolle Begleitung.',
       'Jede Begegnung ist individuell und entsteht aus dem, was sich im jeweiligen Moment zeigen möchte. Inhalt und Tempo stimmen wir miteinander ab.',
       'Die Veränderung entsteht aus dir selbst. Ich halte den Raum, damit Klarheit, neue Perspektiven und Entwicklung möglich werden.'
     ],
@@ -235,7 +235,7 @@ const offerDetails = {
     ],
     sections:[
       {title:'Wahrnehmen, was gerade wichtig ist', paragraphs:[
-        'Jedes Kind ist einzigartig. Deshalb gibt es bei mir keinen starren Ablauf. Mit Einfühlungsvermögen, Achtsamkeit und spielerischen, altersgerechten Methoden finde ich gemeinsam mit deinem Kind heraus, was gerade Aufmerksamkeit braucht.',
+        'Jedes Kind ist einzigartig. Deshalb gibt es bei mir keinen starren Ablauf. Als Dipl. Kindermentaltrainerin finde ich mit Einfühlungsvermögen, Achtsamkeit und spielerischen, altersgerechten Methoden gemeinsam mit deinem Kind heraus, was gerade Aufmerksamkeit braucht.',
         'Dabei verbinde ich Mentaltraining, Gespräche, Körperwahrnehmung und meine weiteren ganzheitlichen Zugänge. Was davon passend ist, richtet sich nach dem Alter, den Bedürfnissen und der Bereitschaft deines Kindes. Seine Grenzen und sein Tempo bleiben dabei maßgeblich.',
         'Eine meiner Stärken ist es, aufmerksam hinzuhören und feine Signale wahrzunehmen – auch dann, wenn Worte noch fehlen. Im Mittelpunkt stehen die Ressourcen deines Kindes: seine Stärken, seine Intuition und das Vertrauen, selbst etwas bewirken zu können.'
       ]},
