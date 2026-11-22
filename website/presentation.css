@@ -57,7 +57,11 @@ body{background:var(--paper);font-size:17px}
 .additional-offers .offer-card--without-photo .offer-content{padding-top:0}
 .additional-offers .offer-card--without-photo{padding-left:28px;border-left:1px solid var(--line)}
 .additional-offers .image-credit{font-size:11px!important;margin:0 0 14px!important}
-.reimbursement-note{border:0;background:none;margin-top:32px;padding:18px 0}
+.reimbursement-note{border:0;background:none;margin-top:32px;padding:24px clamp(18px,3vw,32px)}
+.reimbursement-note::before{display:none}
+.reimbursement-note>div{min-width:0}
+.reimbursement-note h3,.reimbursement-note p{overflow-wrap:anywhere;hyphens:auto}
+.reimbursement-note h3{line-height:1.2}
 .current-workshop{grid-template-columns:.65fr 1.35fr;border-radius:6px;background:#f0e9db;box-shadow:none;padding:44px;gap:58px;margin-block:55px 100px}
 .current-workshop::after{display:none}
 .current-workshop-photo{transform:none;max-width:235px}
