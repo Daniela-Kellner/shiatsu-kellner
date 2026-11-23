@@ -1,8 +1,15 @@
 # Persönliche Website-Statistik
 
-Noch nicht aktiviert. Der bisherige externe Zähler bleibt bis zur geprüften
-Umstellung unverändert. Die PHP-Dateien funktionieren nur auf dem bestehenden
-World4You-Webspace, nicht auf GitHub Pages.
+Am 23. November 2026 aktiviert. Der frühere externe Zähler wird nicht mehr
+angesprochen. Die PHP-Dateien funktionieren nur auf dem bestehenden
+World4You-Webspace, nicht auf GitHub Pages. Die alte externe Datenbank wurde
+weder verändert noch importiert.
+
+Die echte Startseite wurde aufgerufen; anschließend zeigte die angemeldete
+Übersicht einen neuen Aufruf für heute, diesen Monat und die letzten 30 Tage.
+Der geschützte Unterordner liefert im Browser 403. Die Zugangskonfiguration
+wurde über den authentifizierten WebFTP-Zugang separat hochgeladen; sie ist
+nicht in Git enthalten.
 
 ## Einrichtung
 
