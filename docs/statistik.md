@@ -1,0 +1,48 @@
+# Persönliche Website-Statistik
+
+Noch nicht aktiviert. Der bisherige externe Zähler bleibt bis zur geprüften
+Umstellung unverändert. Die PHP-Dateien funktionieren nur auf dem bestehenden
+World4You-Webspace, nicht auf GitHub Pages.
+
+## Einrichtung
+
+1. `python3 scripts/statistik-zugang.py` lokal starten. Daniela füllt das
+   Formular auf `http://127.0.0.1:8779/` selbst aus. Das Passwort weder abfragen
+   noch aus dem Formular lesen. Benutzername: `Daniela`.
+2. PHP-Dateien prüfen, dann auf World4You veröffentlichen. Ohne Konfiguration
+   bleiben Zähler und Übersicht geschlossen (503), ohne öffentlichen Setupweg.
+3. Die ausschließlich lokal erzeugte Datei `tmp/statistik-zugang/zugang.php`
+   nach `statistik/privat/zugang.php` auf Danielas Webspace hochladen. Nie in Git
+   übernehmen und weder Inhalt noch Prüfsumme in Chat oder Protokolle ausgeben.
+4. HTTPS, Verzeichnisschutz, Anmeldung und Zählung auf dem echten Hosting prüfen.
+   Daniela meldet sich selbst an. Ohne Anmeldung dürfen keine Werte sichtbar
+   sein; `/statistik/privat/zugang.php` muss 403/404 liefern.
+5. Erst danach `website/pageview.js` vom externen Endpunkt auf
+   `/statistik/zaehlen.php` umstellen. Nur die beiden echten Praxisdomains zählen;
+   lokale Vorschauen und GitHub Pages auslassen. Datenschutzhinweis in app.js
+   an die tatsächlich eingesetzte Zählung anpassen. Vorherige Werte nicht
+   erfinden oder als übernommen darstellen.
+
+Die Statistik erfasst nur Tageszähler nach Europe/Vienna und bewahrt 400 Tage
+auf. Keine IP-Adressen, Cookies, Besucher-IDs, Seitenpfade oder Referrer in den
+Zählerdaten. Technische Hoster-Logs bleiben davon unabhängig. Wiederholtes
+Laden zählt erneut. Bekannte Bot-User-Agents werden übersprungen, ohne Anspruch
+auf vollständige Bot-Erkennung. Öffentliche Zähler lassen sich manipulieren;
+die Zahlen dienen nur zur Orientierung, nicht zur Abrechnung von Werbung.
+
+Zugang: PBKDF2-HMAC-SHA256 mit 600.000 Runden und zufälligem 32-Byte-Salt,
+HTTP Basic ausschließlich über HTTPS. Keine öffentlichen Reset-/Setupseiten.
+Browser können die Anmeldung bis zum Sitzungsende behalten; ein privates
+Fenster verwenden. Für einen Passwortwechsel muss Daniela die lokale
+Einrichtung erneut selbst durchführen; nie ihr bestehendes Passwort auslesen.
+
+## Prüfen
+
+Mit installiertem PHP:
+
+```sh
+python3 scripts/test_statistik.py
+```
+
+Die Tests verwenden ausschließlich ein temporäres Verzeichnis und ein
+wegwerfbares Testpasswort, niemals die echte Zugangskonfiguration.
