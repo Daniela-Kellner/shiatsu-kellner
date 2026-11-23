@@ -30,7 +30,7 @@ def main():
             return result.stdout
 
         def request(endpoint, setup=""):
-            return php("putenv('STATISTIK_LOCAL_TEST=1');" + setup
+            return php("putenv('STATISTIK_LOCAL_TEST=1');ini_set('session.save_path'," + json.dumps(str(private)) + ");" + setup
                        + "register_shutdown_function(function(){echo '\\nSTATUS=' . http_response_code();});"
                        + "require " + json.dumps(str(source / endpoint)) + ";")
 
@@ -48,10 +48,30 @@ def main():
         password = "Disposable local test password!"
         verifier = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 600000).hex()
         (private / "zugang.php").write_text("<?php return ['version'=>1,'salt'=>'" + salt.hex() + "','hash'=>'" + verifier + "'];")
-        assert "STATUS=401" in request("index.php")
-        assert "STATUS=401" in request("index.php", "$_SERVER['PHP_AUTH_USER']='Daniela';$_SERVER['PHP_AUTH_PW']='incorrect';")
+        login_page = request("index.php")
+        assert "<button>Anmelden</button>" in login_page, login_page
+        assert "<button>Anmelden</button>" in request("index.php", "$_SERVER['PHP_AUTH_USER']='Daniela';$_SERVER['PHP_AUTH_PW']='incorrect';")
         authenticated = "$_SERVER['PHP_AUTH_USER']='Daniela';$_SERVER['PHP_AUTH_PW']='" + password + "';"
         assert "Deine Website-Statistik" in request("index.php", authenticated)
+        # Exercise form login across separate PHP requests, including session
+        # rotation, CSRF checks, wrong credentials and logout.
+        session_id = "disposabletestsession123456789"
+        seed = ("session_name('daniela_statistik');session_id('" + session_id
+                + "');session_start();$_SESSION['csrf']='test-csrf';session_write_close();")
+        form = "$_SERVER['REQUEST_METHOD']='POST';$_POST=['action'=>'login','csrf'=>'test-csrf','username'=>'Daniela','password'=>" + json.dumps(password) + "];"
+        assert "STATUS=403" in request("index.php", seed + form + "$_POST['csrf']='wrong';")
+        assert "STATUS=401" in request("index.php", seed + form + "$_POST['password']='wrong password';")
+        assert "STATUS=303" in request("index.php", seed + form)
+        sessions = [file for file in private.glob("sess_*") if "auth|" in file.read_text()]
+        assert len(sessions) == 1
+        rotated = sessions[0].name.removeprefix("sess_")
+        assert rotated != session_id
+        current_session = "session_id('" + rotated + "');"
+        assert "Deine Tageswerte" in request("index.php", current_session)
+        token = __import__('re').search(r'csrf\|s:\d+:"([a-f0-9]+)"', sessions[0].read_text()).group(1)
+        logout = "$_SERVER['REQUEST_METHOD']='POST';$_POST=['action'=>'logout','csrf'=>'" + token + "'];"
+        assert "STATUS=303" in request("index.php", current_session + logout)
+        assert "<button>Anmelden</button>" in request("index.php", current_session)
         assert "STATUS=405" in request("zaehlen.php", "$_SERVER['REQUEST_METHOD']='GET';")
         assert "STATUS=403" in request("zaehlen.php", "$_SERVER['REQUEST_METHOD']='POST';$_SERVER['HTTP_ORIGIN']='https://example.org';")
         assert "STATUS=403" in request("zaehlen.php", good_request + "$_SERVER['CONTENT_LENGTH']='1';")

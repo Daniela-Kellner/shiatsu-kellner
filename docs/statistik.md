@@ -31,9 +31,11 @@ auf vollständige Bot-Erkennung. Öffentliche Zähler lassen sich manipulieren;
 die Zahlen dienen nur zur Orientierung, nicht zur Abrechnung von Werbung.
 
 Zugang: PBKDF2-HMAC-SHA256 mit 600.000 Runden und zufälligem 32-Byte-Salt,
-HTTP Basic ausschließlich über HTTPS. Keine öffentlichen Reset-/Setupseiten.
-Browser können die Anmeldung bis zum Sitzungsende behalten; ein privates
-Fenster verwenden. Für einen Passwortwechsel muss Daniela die lokale
+Formularanmeldung ausschließlich über HTTPS mit CSRF-Schutz, Wechsel der
+Sitzungskennung bei Anmeldung und einem Secure-/HttpOnly-/SameSite-Strict-Cookie
+nur im Statistikbereich. Nach 30 Minuten ohne Aktivität ist eine erneute
+Anmeldung nötig; Abmelden beendet die Sitzung. HTTP Basic bleibt für
+authentifizierte Prüfwerkzeuge unterstützt. Keine öffentlichen Reset-/Setupseiten. Für einen Passwortwechsel muss Daniela die lokale
 Einrichtung erneut selbst durchführen; nie ihr bestehendes Passwort auslesen.
 
 ## Prüfen

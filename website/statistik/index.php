@@ -4,16 +4,64 @@ require __DIR__ . '/lib.php';
 stats_headers();
 stats_https();
 header('Content-Type: text/html; charset=utf-8');
+function stats_login_page(string $error = ''): never {
+    $token = htmlspecialchars($_SESSION['csrf'], ENT_QUOTES, 'UTF-8');
+    $message = htmlspecialchars($error, ENT_QUOTES, 'UTF-8');
+    session_write_close();
+    exit('<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Statistik anmelden · Daniela Kellner</title><style>body{font:17px/1.6 system-ui,sans-serif;margin:0;background:#f8f5ef;color:#343b31}main{max-width:500px;padding:30px;margin:6vh auto}h1{font:normal 2.3rem/1.2 Georgia,serif}label{display:block;margin:22px 0}input{display:block;box-sizing:border-box;width:100%;font:inherit;padding:12px;border:1px solid #9aab8c;border-radius:6px;margin-top:7px}button{font:inherit;background:#586b49;color:white;border:0;border-radius:7px;padding:13px 24px;cursor:pointer}a{color:#586b49}.hint{font-size:.9rem;color:#61695b}</style></head><body><main><p>Daniela Kellner · persönlicher Bereich</p><h1>Deine Website-Statistik</h1><p>Melde dich mit deinem bereits vorbereiteten Statistik-Passwort an.</p><p role="alert">' . $message . '</p><form method="post" action="/statistik/"><input type="hidden" name="csrf" value="' . $token . '"><input type="hidden" name="action" value="login"><label>Benutzername<input name="username" value="Daniela" autocomplete="username" readonly></label><label>Dein Statistik-Passwort<input type="password" name="password" autocomplete="current-password" required maxlength="256"></label><button>Anmelden</button></form><p class="hint">Hier wird kein neues Passwort erstellt. Nur für die Anmeldung wird ein notwendiges Sitzungscookie verwendet. Die Sitzung endet nach 30 Minuten ohne Aktivität.</p><a href="/">Zur Praxiswebsite</a></main></body></html>');
+}
 try {
     $config = stats_config();
     if ($config === null) {
         http_response_code(503);
         exit('<!doctype html><html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Website-Statistik</title><h1>Deine Website-Statistik wird vorbereitet.</h1><p>Der persönliche Zugang ist noch nicht eingerichtet. Es werden noch keine neuen Aufrufzahlen gespeichert.</p></html>');
     }
+    // Basic credentials remain supported for authenticated tooling, but normal
+    // browsers use the form instead of a browser-specific HTTP auth dialog.
     if (!stats_authenticate($config)) {
-        header('WWW-Authenticate: Basic realm="Danielas Website-Statistik", charset="UTF-8"');
-        http_response_code(401);
-        exit('Bitte mit deinem persönlichen Statistik-Zugang anmelden.');
+        ini_set('session.use_strict_mode', '1');
+        ini_set('session.use_only_cookies', '1');
+        session_name('daniela_statistik');
+        session_set_cookie_params(['lifetime' => 0, 'path' => '/statistik/', 'secure' => true, 'httponly' => true, 'samesite' => 'Strict']);
+        if (!session_start()) throw new RuntimeException('Sitzung nicht verfügbar.');
+        $_SESSION['csrf'] ??= bin2hex(random_bytes(32));
+        $tag = hash('sha256', $config['hash']);
+        $error = '';
+        if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
+            $csrf = $_POST['csrf'] ?? null;
+            if (!is_string($csrf) || !hash_equals($_SESSION['csrf'], $csrf)) {
+                http_response_code(403);
+                stats_login_page('Bitte öffne die Statistik erneut und melde dich an.');
+            }
+            if (($_POST['action'] ?? '') === 'logout') {
+                $_SESSION = [];
+                session_destroy();
+                setcookie('daniela_statistik', '', ['expires' => time() - 3600, 'path' => '/statistik/', 'secure' => true, 'httponly' => true, 'samesite' => 'Strict']);
+                header('Location: /statistik/', true, 303);
+                exit;
+            }
+            $username = $_POST['username'] ?? '';
+            $password = $_POST['password'] ?? '';
+            if (is_string($username) && is_string($password) && stats_password_valid($config, $username, $password)) {
+                session_regenerate_id(true);
+                $_SESSION['auth'] = $tag;
+                $_SESSION['last'] = time();
+                $_SESSION['csrf'] = bin2hex(random_bytes(32));
+                session_write_close();
+                header('Location: /statistik/', true, 303);
+                exit;
+            }
+            usleep(300000);
+            http_response_code(401);
+            $error = 'Die Anmeldung hat nicht geklappt. Bitte prüfe dein Statistik-Passwort.';
+        }
+        if (!hash_equals($tag, $_SESSION['auth'] ?? '') || time() - ($_SESSION['last'] ?? 0) > 1800) {
+            unset($_SESSION['auth']);
+            stats_login_page($error);
+        }
+        $_SESSION['last'] = time();
+        $logoutToken = $_SESSION['csrf'];
+        session_write_close();
     }
     $data = stats_snapshot();
 } catch (Throwable $error) {
@@ -60,5 +108,5 @@ $escape = fn($value) => htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8');
 <?php endfor; ?></tbody></table></div></section>
 <p class="note"><strong>Was diese Zahlen bedeuten:</strong> Gezählt werden Seitenaufrufe mit aktiviertem JavaScript. Erneutes Laden zählt erneut. Das ist keine exakte Zahl unterschiedlicher Menschen. Erkannte Bots werden ausgelassen; andere automatisierte Aufrufe können enthalten sein. Blockierte Zählmeldungen fehlen.</p>
 <p class="muted"><?php if ($data['started']): ?>Neue Zählung seit <?= $escape(DateTimeImmutable::createFromFormat('!Y-m-d', $data['started'])->format('d.m.Y')) ?>.<?php else: ?>Die neue Zählung hat noch keine Aufrufe erfasst.<?php endif; ?> Frühere Zahlen sind nicht übernommen. Tageswerte werden für 400 Tage gespeichert. Dieser Zähler speichert keine IP-Adressen, Besucherkennungen oder Herkunftsseiten und setzt keine Cookies. Die üblichen technischen Serverprotokolle des Hosters bleiben davon unabhängig.</p>
-<footer><a href="/">Zur Praxiswebsite</a><p class="muted">Bitte schließe nach der Nutzung das private Browserfenster. Dein Browser kann den Statistik-Zugang bis zum Ende seiner Sitzung behalten.</p></footer>
+<footer><a href="/">Zur Praxiswebsite</a><?php if (isset($logoutToken)): ?><form method="post" action="/statistik/"><input type="hidden" name="action" value="logout"><input type="hidden" name="csrf" value="<?= $escape($logoutToken) ?>"><button type="submit">Abmelden</button></form><?php endif; ?><p class="muted">Dein persönlicher Zugang endet nach 30 Minuten ohne Aktivität. Melde dich nach der Nutzung ab.</p></footer>
 </main></body></html>

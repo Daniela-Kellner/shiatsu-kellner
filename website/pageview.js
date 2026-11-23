@@ -1,13 +1,13 @@
 (() => {
-  const endpoint = ['shiatsu-kellner.at', 'www.shiatsu-kellner.at'].includes(location.hostname)
-    ? 'https://daniela-kellner-auszeit.s-hebnar.chatgpt.site/api/pageview'
-    : '/api/pageview';
+  // Only the production practice website counts; never local or Pages previews.
+  if (!['shiatsu-kellner.at', 'www.shiatsu-kellner.at'].includes(location.hostname)) return;
+  const endpoint = '/statistik/zaehlen.php';
   const count = () => {
     fetch(endpoint, {
       method: 'POST',
-      mode: 'cors',
+      mode: 'same-origin',
       credentials: 'omit',
-      referrerPolicy: 'no-referrer',
+      referrerPolicy: 'same-origin',
       cache: 'no-store',
       keepalive: true
     }).catch(() => {});

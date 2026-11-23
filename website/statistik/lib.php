@@ -8,8 +8,8 @@ function stats_headers(): void {
     header('Cache-Control: no-store, private');
     header('X-Robots-Tag: noindex, nofollow, noarchive');
     header('X-Content-Type-Options: nosniff');
-    header('Referrer-Policy: no-referrer');
-    header("Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'");
+    header('Referrer-Policy: same-origin');
+    header("Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
 }
 
 function stats_https(): void {
@@ -32,6 +32,12 @@ function stats_config(): ?array {
     return $config;
 }
 
+function stats_password_valid(array $config, string $username, string $password): bool {
+    if (strlen($password) > 1024 || $username !== 'Daniela') return false;
+    $hash = hash_pbkdf2('sha256', $password, hex2bin($config['salt']), 600000, 64);
+    return hash_equals($config['hash'], $hash);
+}
+
 function stats_authenticate(array $config): bool {
     $username = $_SERVER['PHP_AUTH_USER'] ?? '';
     $password = $_SERVER['PHP_AUTH_PW'] ?? '';
@@ -42,9 +48,7 @@ function stats_authenticate(array $config): bool {
             [$username, $password] = explode(':', $decoded, 2);
         }
     }
-    if (!is_string($password) || strlen($password) > 1024 || $username !== 'Daniela') return false;
-    $hash = hash_pbkdf2('sha256', $password, hex2bin($config['salt']), 600000, 64);
-    return hash_equals($config['hash'], $hash);
+    return is_string($password) && stats_password_valid($config, $username, $password);
 }
 
 function stats_read($stream): array {
