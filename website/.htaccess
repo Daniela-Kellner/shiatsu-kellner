@@ -17,7 +17,15 @@ AddDefaultCharset UTF-8
   </FilesMatch>
 </IfModule>
 
-# Bekannte frühere URL auf die übernommenen Erfahrungsberichte führen.
+# Frühere WordPress-Adressen dauerhaft auf die passenden neuen Inhalte führen.
+# Exakte Pfade verhindern, dass neue Angebotsseiten erneut umgeleitet werden.
 <IfModule mod_alias.c>
+  RedirectMatch 301 ^/angebot/moxa/?$ https://shiatsu-kellner.at/angebote/moxa-narbenarbeit/
+  RedirectMatch 301 ^/angebot/shiatsu/?$ https://shiatsu-kellner.at/angebote/shiatsu/
+  RedirectMatch 301 ^/angebot/quantenarbeit/?$ https://shiatsu-kellner.at/angebote/mentaltraining-coaching/
+  RedirectMatch 301 ^/angebot/workshops/?$ https://shiatsu-kellner.at/#begegnungen
+  RedirectMatch 301 ^/praxis/?$ https://shiatsu-kellner.at/#kontakt
+  RedirectMatch 301 ^/daniela/?$ https://shiatsu-kellner.at/#daniela
+  RedirectMatch 301 ^/kontakt/?$ https://shiatsu-kellner.at/#kontakt
   RedirectMatch 301 ^/testimonials/?$ https://shiatsu-kellner.at/#stimmen
 </IfModule>
