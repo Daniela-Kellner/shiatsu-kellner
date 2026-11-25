@@ -144,3 +144,8 @@ html{scroll-behavior:auto}
 @media(max-width:700px){.breath-offer{grid-template-columns:1fr;gap:28px}.breath-offer-photo{max-width:280px}.breath-offer h3{font-size:34px}}
 
 .contact-social{display:flex;flex-wrap:wrap;gap:0 24px;align-items:flex-start}
+
+/* Persönlicher Jubiläumsrückblick, November 2026. */
+.jubilee{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,6vw,76px);align-items:start;border-top:1px solid var(--line);padding-block:65px 90px;scroll-margin-top:110px}
+.jubilee figure{margin:0;position:sticky;top:120px}.jubilee-photo{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}.jubilee-photo img{display:block;width:100%;height:auto;border-radius:110px 110px 4px 4px}.jubilee figcaption{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}.jubilee h2{font-size:clamp(34px,3.6vw,48px);line-height:1.15;margin-bottom:26px}.jubilee-story>p:not(.eyebrow):not(.jubilee-signature){font-size:16px;line-height:1.85;color:var(--muted);margin-bottom:17px}.jubilee .jubilee-signature{font:italic 28px var(--serif);color:var(--gold-deep)}.jubilee-links{display:flex;flex-wrap:wrap;gap:12px 25px;margin-top:23px}.jubilee-links button{font-size:14px}
+@media(max-width:700px){.jubilee{grid-template-columns:1fr;padding-block:40px 60px;gap:30px}.jubilee figure{position:static;max-width:420px;margin-inline:auto}.jubilee-photo img{border-radius:70px 70px 4px 4px}.jubilee h2{font-size:35px}.jubilee-links{flex-direction:column;align-items:flex-start}}
